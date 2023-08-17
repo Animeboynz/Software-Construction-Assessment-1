@@ -47,7 +47,7 @@ public class Main
                     // Implement stock update checking
                     break;
                 case 5:
-                    inventoryManager.configure();
+                    Configuration.options();
                     break;
                 default:
                     System.out.println("Invalid option. Please select again.");
