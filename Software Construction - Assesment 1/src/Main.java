@@ -27,6 +27,32 @@ public class Main
             System.out.println("5. Check for stock updates");
             System.out.println("6. Config");
 
+            int option = scanner.nextInt();
+
+            switch (option)
+            {
+                case 0:
+                    inventoryManager.listInventory();
+                    break;
+                case 1:
+                    inventoryManager.addItemsToInventory();
+                    break;
+                case 2:
+                    inventoryManager.removeItemsFromInventory();
+                    break;
+                case 3:
+                    inventoryManager.moveStockLocation();
+                    break;
+                case 4:
+                    // Implement stock update checking
+                    break;
+                case 5:
+                    inventoryManager.configure();
+                    break;
+                default:
+                    System.out.println("Invalid option. Please select again.");
+            }
+
         }
     }
 }
