@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 public class Main
 {
     public static void main(String[] args)
@@ -12,5 +14,19 @@ public class Main
         c1.AddNewProduct(p2);
         c1.AddNewProduct(p3);
         System.out.println(c1.toString());
+
+        Scanner scanner = new Scanner(System.in);
+
+        while (true)
+        {
+            System.out.println("Select an option:");
+            System.out.println("1. List Inventory");
+            System.out.println("2. Add items to inventory");
+            System.out.println("3. Remove items from inventory");
+            System.out.println("4. Move stock location");
+            System.out.println("5. Check for stock updates");
+            System.out.println("6. Config");
+
+        }
     }
 }
