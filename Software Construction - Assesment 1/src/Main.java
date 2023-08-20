@@ -17,6 +17,8 @@ public class Main
 
         Scanner scanner = new Scanner(System.in);
 
+        Initialize def = new Initialize();
+
         while (true)
         {
             System.out.println("Select an option:");
@@ -47,7 +49,7 @@ public class Main
                     // Implement stock update checking
                     break;
                 case 5:
-                    Configuration.options();
+                    def.options();
                     break;
                 default:
                     System.out.println("Invalid option. Please select again.");
