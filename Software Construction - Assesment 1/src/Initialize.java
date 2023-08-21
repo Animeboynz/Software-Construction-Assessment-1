@@ -69,10 +69,12 @@ public class Initialize {
     public String listInventory() {
 
         System.out.println("Select your desired location.");
-        locations.toString();
+        for (Location location : locations) {
+            System.out.println(location.getLocation());
+        }
         String option = scanner.nextLine();
         Location loc = this.findLocationByName(option);
-        loc.toString();
+        System.out.println(loc.toString());
         return "";
 
     }
@@ -80,10 +82,13 @@ public class Initialize {
     public void addItemsToInventory(Product p)
     {
         System.out.println("Select your desired location.");
-        locations.toString();
+        for (Location location : locations) {
+            System.out.println(location.getLocation());
+        }
         String option = scanner.nextLine();
-        Location loc = this.findLocationByName(option);
-        loc.getInv().addProduct(p);
+        //Location loc = findLocationByName(option);
+
+        findLocationByName(option).getInv().addProduct(p);
     }
 
 
