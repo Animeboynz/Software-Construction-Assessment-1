@@ -1,9 +1,9 @@
 import java.util.Scanner;
-
+import java.util.*;
 public class Main
 {
     public static void main(String[] args)
-    {
+    {   /*
         Product p1 = new Product("9419909788", "Product 1", 99.99);
         Product p2 = new Product("1234567", "Product 2", 199.99);
         Product p3 = new Discount("987654dddddsa3", "Product 3", 299.99, 40);
@@ -14,7 +14,7 @@ public class Main
         c1.AddNewProduct(p2);
         c1.AddNewProduct(p3);
         System.out.println(c1.toString());
-
+        */
         Scanner scanner = new Scanner(System.in);
 
         Initialize def = new Initialize();
@@ -28,28 +28,34 @@ public class Main
             System.out.println("4. Move stock location");
             System.out.println("5. Check for stock updates");
             System.out.println("6. Config");
+            System.out.println("7. Exit");
 
             int option = scanner.nextInt();
 
             switch (option)
             {
-                case 0:
-                    inventoryManager.listInventory();
-                    break;
                 case 1:
-                    inventoryManager.addItemsToInventory();
+                    def.listInventory();
                     break;
                 case 2:
-                    inventoryManager.removeItemsFromInventory();
+                    Product p = new Product("443322", "name1", 299.90);
+                    def.addItemsToInventory(p);
+                    //System.out.println("jj");
                     break;
                 case 3:
-                    inventoryManager.moveStockLocation();
+                    //inventoryManager.removeItemsFromInventory();
                     break;
                 case 4:
-                    // Implement stock update checking
+                    //inventoryManager.moveStockLocation();
                     break;
                 case 5:
+                    // Implement stock update checking
+                    break;
+                case 6:
                     def.options();
+                    break;
+                case 7:
+                    System.exit(0);
                     break;
                 default:
                     System.out.println("Invalid option. Please select again.");

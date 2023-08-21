@@ -9,6 +9,17 @@ public class Inventory {
         products = new ArrayList<>();
     }
 
+    public void addProduct(Product p)
+    {
+        products.add(p);
+    }
 
-
+    @Override
+    public String toString() {
+        String output = "";
+        for(Product p: products){
+            output+=p + "\n ";
+        }
+        return output;
+    }
 }

@@ -2,14 +2,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class Initialize
-{
-    private List<Product> products;
+public class Initialize {
+    //private List<Product> products;
     private List<Location> locations;
     private Scanner scanner;
 
     public Initialize() {
-        products = new ArrayList<>();
+        //products = new ArrayList<>();
         locations = new ArrayList<>();
         scanner = new Scanner(System.in);
     }
@@ -19,19 +18,30 @@ public class Initialize
         System.out.println("1. Add new Products");
         System.out.println("2. Create new Location");
         int configOption = scanner.nextInt();
+        scanner.nextLine();
 
         switch (configOption) {
             case 1:
                 //CreateProduct.addNewProduct();
                 break;
             case 2:
-                //createNewLocation();
+                createNewLocation();
                 break;
             default:
                 System.out.println("Invalid config option.");
         }
     }
 
+    public void createNewLocation()
+    {
+        System.out.println("Enter a name for the new location: ");
+        String option2 = scanner.nextLine();
+        System.out.println("hi");
+        locations.add(new Location(option2));
+
+    }
+
+    /*
     private Product findProductByBarcode(String barcode) {
         for (Product product : products) {
             if (product.getBarcode().equals(barcode)) {
@@ -39,7 +49,7 @@ public class Initialize
             }
         }
         return null;
-    }
+    }*/
 
     private Location findLocationByName(String name) {
         for (Location location : locations) {
@@ -48,6 +58,32 @@ public class Initialize
             }
         }
         return null;
+    }
+
+    public String printLocations()
+    {
+        return "";
+    }
+
+
+    public String listInventory() {
+
+        System.out.println("Select your desired location.");
+        locations.toString();
+        String option = scanner.nextLine();
+        Location loc = this.findLocationByName(option);
+        loc.toString();
+        return "";
+
+    }
+
+    public void addItemsToInventory(Product p)
+    {
+        System.out.println("Select your desired location.");
+        locations.toString();
+        String option = scanner.nextLine();
+        Location loc = this.findLocationByName(option);
+        loc.getInv().addProduct(p);
     }
 
 
