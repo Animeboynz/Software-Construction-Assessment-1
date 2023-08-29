@@ -38,8 +38,9 @@ public class Main
                     def.listInventory();
                     break;
                 case 2:
-                    Product p = new Product("443322", "name1", 299.90);
-                    def.addItemsToInventory(p);
+//                    Product p = new Product("443322", "name1", 299.90);
+
+                    def.addItemsToInventory();
                     //System.out.println("jj");
                     break;
                 case 3:

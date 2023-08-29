@@ -7,6 +7,7 @@ public class Initialize {
     private List<Location> locations;
     private Scanner scanner;
 
+    Pro q = new Pro();
     public Initialize() {
         //products = new ArrayList<>();
         locations = new ArrayList<>();
@@ -17,12 +18,13 @@ public class Initialize {
         System.out.println("Select a config option:");
         System.out.println("1. Add new Products");
         System.out.println("2. Create new Location");
+
         int configOption = scanner.nextInt();
         scanner.nextLine();
 
         switch (configOption) {
             case 1:
-                //CreateProduct.addNewProduct();
+                q.addNewProduct();
                 break;
             case 2:
                 createNewLocation();
@@ -41,15 +43,18 @@ public class Initialize {
 
     }
 
-    /*
+
     private Product findProductByBarcode(String barcode) {
-        for (Product product : products) {
+        //Pro p = new Pro();
+        for (Product product : q.getProducts()) {
             if (product.getBarcode().equals(barcode)) {
+                //System.out.println("Found");
                 return product;
             }
         }
+        System.out.println("Product does not exist. Add new product under Options First");
         return null;
-    }*/
+    }
 
     private Location findLocationByName(String name) {
         for (Location location : locations) {
@@ -66,29 +71,38 @@ public class Initialize {
     }
 
 
-    public String listInventory() {
+    public void listInventory() {
 
+        scanner.nextLine();
         System.out.println("Select your desired location.");
         for (Location location : locations) {
             System.out.println(location.getLocation());
         }
+
         String option = scanner.nextLine();
         Location loc = this.findLocationByName(option);
         System.out.println(loc.toString());
-        return "";
 
     }
 
-    public void addItemsToInventory(Product p)
+    public void addItemsToInventory()
     {
         System.out.println("Select your desired location.");
         for (Location location : locations) {
             System.out.println(location.getLocation());
         }
-        String option = scanner.nextLine();
+        String loc = scanner.nextLine();
         //Location loc = findLocationByName(option);
 
-        findLocationByName(option).getInv().addProduct(p);
+        System.out.println("Type Barcode");
+        String barcode = scanner.nextLine();
+        Product p = findProductByBarcode(barcode);
+
+        if (p != null)
+        {
+            findLocationByName(loc).getInv().addProduct(p);
+        }
+
     }
 
 

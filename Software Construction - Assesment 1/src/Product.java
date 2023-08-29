@@ -5,6 +5,12 @@ public class Product
     private double Price;
 
 
+
+
+
+    private int quantity;
+
+
     public String getBarcode() {
         return barcode;
     }
@@ -33,6 +39,7 @@ public class Product
         setBarcode(barcode);
         setName(name);
         setPrice(price);
+        //setQuantity(0);
     }
 
     @Override

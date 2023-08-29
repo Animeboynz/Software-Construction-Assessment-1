@@ -3,23 +3,31 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Inventory {
-    private List<Product> products;
+
+    //private List<Product> products;
+    //private List<Integer> quantity;
+
+    private List<ProductQuantity> pq;
+    private Scanner scanner = new Scanner(System.in);
 
     public Inventory() {
-        products = new ArrayList<>();
+        pq = new ArrayList<>();
+        //products = new ArrayList<>();
     }
 
     public void addProduct(Product p)
     {
-        products.add(p);
+        System.out.println("Enter Quantity");
+        int quantity = scanner.nextInt();
+        pq.add(new ProductQuantity(p, quantity));
     }
 
     @Override
     public String toString() {
-        String output = "";
-        for(Product p: products){
-            output+=p + "\n ";
+        String out= "";
+        for(ProductQuantity p : pq){
+            out += p.toString() + "\n";
         }
-        return output;
+        return out;
     }
 }
