@@ -47,7 +47,7 @@ public class Main
                     def.removeItemsFromInventory();
                     break;
                 case 4:
-                    //inventoryManager.moveStockLocation();
+                    def.moveStockLocation();
                     break;
                 case 5:
                     // Implement stock update checking

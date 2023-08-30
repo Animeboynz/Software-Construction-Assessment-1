@@ -170,6 +170,66 @@ public class Initialize {
         return -1;
     }
 
+    public void moveStockLocation()
+    {
+        if (locations.size() == 1)
+        {
+            System.out.println("You only have 1 location, Create more to use this function");
+        }
+        else {
+            System.out.println("Select Source Inventory");
+            for (Location location : locations) {
+                System.out.println(location.getLocation());
+            }
+            String source = scanner.nextLine();
+            System.out.println("Select Destination Inventory");
+            for (Location location : locations) {
+                if (!location.getLocation().equals(source))
+                {
+                    System.out.println(location.getLocation());
+                }
+            }
+            String target = scanner.nextLine();
+            System.out.println("Enter Product Barcode");
+            String barcode = scanner.nextLine();
+
+            Product p = findProductByBarcode(barcode);
+            int existingIndex = findExistingProductIndex(source, p);
+
+            if (existingIndex != -1)//If product exists in inventory
+            {
+                System.out.println("Enter Quantity to Move");
+                int qtomove = Integer.parseInt(scanner.nextLine());
+                if (qtomove <= findLocationByName(source).getInv().getPq().get(existingIndex).getQuantity())//If qtomove <= quantity of that product in source
+                {
+                    //Move Product
+                    findLocationByName(source).getInv().updateQuantity(existingIndex, qtomove, '-');
+                    //findLocationByName(loc).getInv().updateQuantity(existingIndex, quantityToRemove, '-')
+                    Product prod = findProductByBarcode(barcode);
+
+                    if (prod != null) {
+                        int ei = findExistingProductIndex(target, prod);
+
+                        if (ei != -1) {
+                            //System.out.println("Enter Quantity to add:");
+                            int quantityToAdd = scanner.nextInt();
+                            findLocationByName(target).getInv().updateQuantity(ei, quantityToAdd, '+');
+                        } else {
+                            findLocationByName(target).getInv().addProduct(prod);
+                        }
+                    }
+                }
+                else {
+                    System.out.println("The quantity you have entered is larger than what exists in the Source Inventory");
+                }
+            }
+            else {
+                System.out.println("This product does not exist in this location");
+            }
+        }
+
+    }
+
     public void saveandexit()
     {
         String FILE_PATH = "save.csv";
