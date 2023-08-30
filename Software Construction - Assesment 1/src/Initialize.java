@@ -165,29 +165,34 @@ public class Initialize {
         try {
             PrintWriter writer = new PrintWriter(new FileWriter(FILE_PATH));
             System.out.println("Made it Here");
-            for (int i = 0; i <= locations.size()-1; i++)
-            {
-                String writeToFile = "";
-                System.out.println("Writing Name of Location");
-                for (int j = 0; j <= locations.get(0).getInv().getPq().size()-1; j++)
-                {
-                    System.out.println("Writing Inventory " + locations.get(i).getLocation() + "Product " + locations.get(i).getInv().getPq().get(j).getProduct().getName());
-                    writeToFile = locations.get(i).getLocation() + ","
-                            + locations.get(i).getInv().getPq().get(j).getQuantity() + ","
-                            + locations.get(i).getInv().getPq().get(j).getProduct().getBarcode() + ","
-                            + locations.get(i).getInv().getPq().get(j).getProduct().getName() + ","
-                            + locations.get(i).getInv().getPq().get(j).getProduct().getPrice() + "\n";
-                    //System.out.println("Writing other details");
-                }
-                writer.println(writeToFile);
-                System.out.println("Saved line to file");
-            }
 
+            for (int i = 0; i < locations.size(); i++) {
+                System.out.println("Writing Name of Location");
+
+                // Check if the inner list has elements before accessing them
+                if (!locations.get(i).getInv().getPq().isEmpty()) {
+                    for (int j = 0; j < locations.get(i).getInv().getPq().size(); j++) {
+                        String writeToFile = locations.get(i).getLocation() + ","
+                                + locations.get(i).getInv().getPq().get(j).getQuantity() + ","
+                                + locations.get(i).getInv().getPq().get(j).getProduct().getBarcode() + ","
+                                + locations.get(i).getInv().getPq().get(j).getProduct().getName() + ","
+                                + locations.get(i).getInv().getPq().get(j).getProduct().getPrice();
+
+                        writer.println(writeToFile);
+                        System.out.println(writeToFile);
+                    }
+                }else {
+                    String writeToFile = locations.get(i).getLocation() + ",NULL,NULL,NULL,NULL";
+                    writer.println(writeToFile);
+                    System.out.println(writeToFile);
+                }
+            }
 
             writer.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
+
         /*
         locations.get(0).getLocation();//Location Name
         locations.get(0).getInv().getPq().get(0).getQuantity();//Quantity of Certain Product
