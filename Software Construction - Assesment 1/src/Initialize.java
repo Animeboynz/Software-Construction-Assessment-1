@@ -7,11 +7,10 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Initialize {
-    //private List<Product> products;
     private List<Location> locations;
     private Scanner scanner;
-
     Pro q = new Pro();
+
     public Initialize() {
         //products = new ArrayList<>();
         locations = new ArrayList<>();
@@ -63,10 +62,8 @@ public class Initialize {
 
 
     private Product findProductByBarcode(String barcode) {
-        //Pro p = new Pro();
         for (Product product : q.getProducts()) {
             if (product.getBarcode().equals(barcode)) {
-                //System.out.println("Found");
                 return product;
             }
         }
@@ -219,32 +216,10 @@ public class Initialize {
                 {
                     //Move Product
                     findLocationByName(source).getInv().updateQuantity(existingIndex, qtomove, '-');
-
-                    //findLocationByName(loc).getInv().updateQuantity(existingIndex, quantityToRemove, '-');
-                    //findLocationByName(loc).getInv().updateQuantity(existingIndex, quantityToRemove, '-')
-                    /*
-                    Product prod = findProductByBarcode(barcode);
-
-                    if (prod != null) {
-                        int ei = findExistingProductIndex(target, prod);
-
-                        if (ei != -1) {
-                            //System.out.println("Enter Quantity to add:");
-                            //int quantityToAdd = scanner.nextInt();
-                            findLocationByName(target).getInv().updateQuantity(ei, qtomove, '+');
-                        } else {
-                            findLocationByName(target).getInv().addSilentProduct(prod, qtomove);
-                        }
-                    }*/
-
                     addItemsToInventorySilent(target, barcode, qtomove);
-
-
-
                 } else if (qtomove == findLocationByName(source).getInv().getPq().get(existingIndex).getQuantity()) {
                     findLocationByName(source).getInv().deletePQ(existingIndex);
                     addItemsToInventorySilent(target, barcode, qtomove);
-
                 } else {
                     System.out.println("The quantity you have entered is larger than what exists in the Source Inventory");
                 }
@@ -253,15 +228,12 @@ public class Initialize {
                 System.out.println("This product does not exist in this location");
             }
         }
-
     }
 
     public void saveandexit()
     {
         String FILE_PATH = "save.csv";
         q.saveProductsToFile();
-        //System.out.println("Saving to File");
-
 
         try {
             PrintWriter writer = new PrintWriter(new FileWriter(FILE_PATH));
@@ -288,19 +260,10 @@ public class Initialize {
                     System.out.println(writeToFile);
                 }
             }
-
             writer.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-        /*
-        locations.get(0).getLocation();//Location Name
-        locations.get(0).getInv().getPq().get(0).getQuantity();//Quantity of Certain Product
-        locations.get(0).getInv().getPq().get(0).getProduct().getBarcode();
-        locations.get(0).getInv().getPq().get(0).getProduct().getName();
-        locations.get(0).getInv().getPq().get(0).getProduct().getPrice();
-         */
     }
 
 
@@ -314,11 +277,8 @@ public class Initialize {
                 String[] parts = scanner.nextLine().split(",");
                 if (parts.length == 5) {
                     String location = parts[0];
-                    //int quantity = Integer.parseInt(parts[1]);
                     String barcode = parts[2];
                     String name = parts[3];
-                    //double price = Double.parseDouble(parts[4]);
-                    //productList.add(new Product(barcode, name, price));
                     createNewSilentLocation(location);
                     if (!barcode.equals("NULL"))
                     {
@@ -329,13 +289,5 @@ public class Initialize {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        //productslist.addAll(productList);
     }
-
-
-
-
-
-
-
 }

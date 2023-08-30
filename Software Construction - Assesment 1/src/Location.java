@@ -28,11 +28,11 @@ public class Location {
         return this.inventory;
     }
 
-   /*
+
     public void setInv(Inventory i)
     {
-        this.inv = inventory;
-    }*/
+        this.inventory = inventory;
+    }
 }
 
 

@@ -35,7 +35,6 @@ public class Product
         setBarcode(barcode);
         setName(name);
         setPrice(price);
-        //setQuantity(0);
     }
 
     @Override

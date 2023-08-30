@@ -4,15 +4,11 @@ import java.util.Scanner;
 
 public class Inventory {
 
-    //private List<Product> products;
-    //private List<Integer> quantity;
-
     private List<ProductQuantity> pq;
     private Scanner scanner = new Scanner(System.in);
 
     public Inventory() {
         pq = new ArrayList<>();
-        //products = new ArrayList<>();
     }
 
 

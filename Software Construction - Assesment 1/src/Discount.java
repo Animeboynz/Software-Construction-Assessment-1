@@ -19,7 +19,6 @@ public class Discount extends Product
     public Discount(String barcode, String name,double price, double discount) {
         super(barcode,name, price);
         setDiscount(discount);
-
     }
 
     @Override
