@@ -127,6 +127,21 @@ public class Initialize {
         }
     }
 
+    public void addItemsToInventorySilent(String loc, String barcode, int quantityToAdd) {
+
+        Product p = findProductByBarcode(barcode);
+
+        if (p != null) {
+            int existingIndex = findExistingProductIndex(loc, p);
+
+            if (existingIndex != -1) {
+                findLocationByName(loc).getInv().updateQuantity(existingIndex, quantityToAdd, '+');
+            } else {
+                findLocationByName(loc).getInv().addProduct(p);
+            }
+        }
+    }
+
     public void removeItemsFromInventory() {
         System.out.println("Select your desired location.");
         for (Location location : locations) {
@@ -200,11 +215,14 @@ public class Initialize {
             {
                 System.out.println("Enter Quantity to Move");
                 int qtomove = Integer.parseInt(scanner.nextLine());
-                if (qtomove <= findLocationByName(source).getInv().getPq().get(existingIndex).getQuantity())//If qtomove <= quantity of that product in source
+                if (qtomove < findLocationByName(source).getInv().getPq().get(existingIndex).getQuantity())//If qtomove <= quantity of that product in source
                 {
                     //Move Product
                     findLocationByName(source).getInv().updateQuantity(existingIndex, qtomove, '-');
+
+                    //findLocationByName(loc).getInv().updateQuantity(existingIndex, quantityToRemove, '-');
                     //findLocationByName(loc).getInv().updateQuantity(existingIndex, quantityToRemove, '-')
+                    /*
                     Product prod = findProductByBarcode(barcode);
 
                     if (prod != null) {
@@ -212,14 +230,22 @@ public class Initialize {
 
                         if (ei != -1) {
                             //System.out.println("Enter Quantity to add:");
-                            int quantityToAdd = scanner.nextInt();
-                            findLocationByName(target).getInv().updateQuantity(ei, quantityToAdd, '+');
+                            //int quantityToAdd = scanner.nextInt();
+                            findLocationByName(target).getInv().updateQuantity(ei, qtomove, '+');
                         } else {
-                            findLocationByName(target).getInv().addProduct(prod);
+                            findLocationByName(target).getInv().addSilentProduct(prod, qtomove);
                         }
-                    }
-                }
-                else {
+                    }*/
+
+                    addItemsToInventorySilent(target, barcode, qtomove);
+
+
+
+                } else if (qtomove == findLocationByName(source).getInv().getPq().get(existingIndex).getQuantity()) {
+                    findLocationByName(source).getInv().deletePQ(existingIndex);
+                    addItemsToInventorySilent(target, barcode, qtomove);
+
+                } else {
                     System.out.println("The quantity you have entered is larger than what exists in the Source Inventory");
                 }
             }

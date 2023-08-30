@@ -55,6 +55,11 @@ public class Inventory {
         return 1;
     }
 
+    public void deletePQ(int Index)
+    {
+        pq.remove(Index);
+    }
+
     public List<ProductQuantity> getPq() {
         return pq;
     }
