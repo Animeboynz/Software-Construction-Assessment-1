@@ -1,3 +1,6 @@
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -12,6 +15,7 @@ public class Initialize {
         //products = new ArrayList<>();
         locations = new ArrayList<>();
         scanner = new Scanner(System.in);
+        q.loadProductsFromFile();
     }
 
     public void options() {
@@ -151,6 +155,47 @@ public class Initialize {
         return -1;
     }
 
+    public void saveandexit()
+    {
+        String FILE_PATH = "save.csv";
+        q.saveProductsToFile();
+        //System.out.println("Saving to File");
+
+
+        try {
+            PrintWriter writer = new PrintWriter(new FileWriter(FILE_PATH));
+            System.out.println("Made it Here");
+            for (int i = 0; i <= locations.size()-1; i++)
+            {
+                String writeToFile = "";
+                System.out.println("Writing Name of Location");
+                for (int j = 0; j <= locations.get(0).getInv().getPq().size()-1; j++)
+                {
+                    System.out.println("Writing Inventory " + locations.get(i).getLocation() + "Product " + locations.get(i).getInv().getPq().get(j).getProduct().getName());
+                    writeToFile = locations.get(i).getLocation() + ","
+                            + locations.get(i).getInv().getPq().get(j).getQuantity() + ","
+                            + locations.get(i).getInv().getPq().get(j).getProduct().getBarcode() + ","
+                            + locations.get(i).getInv().getPq().get(j).getProduct().getName() + ","
+                            + locations.get(i).getInv().getPq().get(j).getProduct().getPrice() + "\n";
+                    //System.out.println("Writing other details");
+                }
+                writer.println(writeToFile);
+                System.out.println("Saved line to file");
+            }
+
+
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        /*
+        locations.get(0).getLocation();//Location Name
+        locations.get(0).getInv().getPq().get(0).getQuantity();//Quantity of Certain Product
+        locations.get(0).getInv().getPq().get(0).getProduct().getBarcode();
+        locations.get(0).getInv().getPq().get(0).getProduct().getName();
+        locations.get(0).getInv().getPq().get(0).getProduct().getPrice();
+         */
+    }
 
 
 

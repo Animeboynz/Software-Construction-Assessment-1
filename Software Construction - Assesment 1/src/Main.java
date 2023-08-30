@@ -19,6 +19,9 @@ public class Main
 
         Initialize def = new Initialize();
 
+        //def.loadProductsFromFile();
+        //def.loadLocationsFromFile();
+
         while (true)
         {
             System.out.println("Select an option:");
@@ -53,9 +56,11 @@ public class Main
                     def.options();
                     break;
                 case 7:
+                    def.saveandexit();
+                    //def.saveLocationsToFile();
                     System.exit(0);
-																//Save all variables to file
-																//def.saveandexit()
+                    //Save all variables to file
+
                     break;
                 default:
                     System.out.println("Invalid option. Please select again.");
