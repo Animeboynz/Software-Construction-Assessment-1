@@ -22,6 +22,15 @@ public class Inventory {
         pq.add(new ProductQuantity(p, quantity));
     }
 
+    public void updateQuantity(int index, int quantityToAdd) {
+        ProductQuantity pqToUpdate = pq.get(index);
+        pqToUpdate.setQuantity(pqToUpdate.getQuantity() + quantityToAdd);
+    }
+
+    public List<ProductQuantity> getPq() {
+        return pq;
+    }
+
     @Override
     public String toString() {
         String out= "";

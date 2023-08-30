@@ -85,25 +85,43 @@ public class Initialize {
 
     }
 
-    public void addItemsToInventory()
-    {
+    public void addItemsToInventory() {
         System.out.println("Select your desired location.");
         for (Location location : locations) {
             System.out.println(location.getLocation());
         }
         String loc = scanner.nextLine();
-        //Location loc = findLocationByName(option);
 
         System.out.println("Type Barcode");
         String barcode = scanner.nextLine();
         Product p = findProductByBarcode(barcode);
 
-        if (p != null)
-        {
-            findLocationByName(loc).getInv().addProduct(p);
-        }
+        if (p != null) {
+            int existingIndex = findExistingProductIndex(loc, p);
 
+            if (existingIndex != -1) {
+                System.out.println("Enter Quantity to add:");
+                int quantityToAdd = scanner.nextInt();
+                findLocationByName(loc).getInv().updateQuantity(existingIndex, quantityToAdd);
+            } else {
+                findLocationByName(loc).getInv().addProduct(p);
+            }
+        }
     }
+
+    private int findExistingProductIndex(String location, Product product) {
+        Location loc = findLocationByName(location);
+        if (loc != null) {
+            Inventory inv = loc.getInv();
+            for (int i = 0; i < inv.getPq().size(); i++) {
+                if (inv.getPq().get(i).getProduct().getBarcode().equals(product.getBarcode())) {
+                    return i;
+                }
+            }
+        }
+        return -1;
+    }
+
 
 
 

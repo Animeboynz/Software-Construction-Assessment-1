@@ -4,10 +4,6 @@ public class Product
     private String name;
     private double Price;
 
-
-
-
-
     private int quantity;
 
 

@@ -15,6 +15,23 @@ public class ProductQuantity {
         Quantity = 0;
     }
 
+    public void setQuantity(int quantity) {
+        Quantity = quantity;
+    }
+
+    public int getQuantity() {
+        return Quantity;
+    }
+
+    public Product getProduct() {
+        return products;
+    }
+
+    public void updateAddQuantity(int quantity)
+    {
+        this.setQuantity(this.Quantity + quantity);
+    }
+
     @Override
     public String toString() {
         return "barcode='" + products.getBarcode() + '\'' +
