@@ -12,7 +12,6 @@ public class Initialize {
     Pro q = new Pro();
 
     public Initialize() {
-        //products = new ArrayList<>();
         locations = new ArrayList<>();
         scanner = new Scanner(System.in);
         q.loadProductsFromFile();
@@ -237,10 +236,8 @@ public class Initialize {
 
         try {
             PrintWriter writer = new PrintWriter(new FileWriter(FILE_PATH));
-            System.out.println("Made it Here");
 
             for (int i = 0; i < locations.size(); i++) {
-                System.out.println("Writing Name of Location");
 
                 // Check if the inner list has elements before accessing them
                 if (!locations.get(i).getInv().getPq().isEmpty()) {
