@@ -124,9 +124,17 @@ public class Initialize {
         if (existingIndex != -1) {
             System.out.println("Enter Quantity to remove:");
             int quantityToRemove = scanner.nextInt();
-            findLocationByName(loc).getInv().updateQuantity(existingIndex, quantityToRemove, '-');
+            int removeStatus = findLocationByName(loc).getInv().updateQuantity(existingIndex, quantityToRemove, '-');
+            if (removeStatus == 0)
+            {
+                System.out.println("Removed Items from Inventory Successfully");
+            }
+            if (removeStatus == 1)
+            {
+                System.out.println("Error! Check if you are removing more than what exists in the inventory");
+            }
         } else {
-            //findLocationByName(loc).getInv().addProduct(p);
+            System.out.println("That product does not exist in this inventory");
         }
     }
 

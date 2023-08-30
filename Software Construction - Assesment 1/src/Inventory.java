@@ -22,18 +22,31 @@ public class Inventory {
         pq.add(new ProductQuantity(p, quantity));
     }
 
-    public void updateQuantity(int index, int quantity, char sign) {
+    public int updateQuantity(int index, int quantity, char sign) {
         ProductQuantity pqToUpdate = pq.get(index);
         if (sign == '+')
         {
             pqToUpdate.setQuantity(pqToUpdate.getQuantity() + quantity);
-            //return 1;
+            //return 0;
         }
         else if (sign == '-')
         {
             if (pqToUpdate.getQuantity() > quantity)
-            pqToUpdate.setQuantity(pqToUpdate.getQuantity() - quantity);
+            {
+                pqToUpdate.setQuantity(pqToUpdate.getQuantity() - quantity);
+            }
+            else if (pqToUpdate.getQuantity() == quantity)
+            {
+                //Implement delete from inventory if quantity = 0
+                return 1;
+            }
+            else if (pqToUpdate.getQuantity() < quantity)
+            {
+                return 1;
+            }
+
         }
+        return 1;
     }
 
     public List<ProductQuantity> getPq() {
