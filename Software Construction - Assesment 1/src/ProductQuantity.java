@@ -23,10 +23,10 @@ public class ProductQuantity {
 
     @Override
     public String toString() {
-        return "barcode='" + products.getBarcode() + '\'' +
-                ", name='" + products.getName() + '\'' +
-                ", Price=" + products.getPrice() +
-                ", Quantity=" + Quantity;
+        return "Barcode: " + products.getBarcode() +
+                ", Name: " + products.getName() +
+                ", Price: " + products.getPrice() +
+                ", Quantity: " + Quantity;
     }
 
 

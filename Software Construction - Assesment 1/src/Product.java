@@ -36,10 +36,8 @@ public class Product
 
     @Override
     public String toString() {
-        return "Product{" +
-                "barcode='" + barcode + '\'' +
-                ", name='" + name + '\'' +
-                ", Price=" + Price +
-                '}';
+        return "Barcode: " + barcode +
+                ", Name: " + name +
+                ", Price: " + Price;
     }
 }

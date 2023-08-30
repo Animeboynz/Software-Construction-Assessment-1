@@ -23,9 +23,7 @@ public class Discount extends Product
 
     @Override
     public String toString() {
-        return super.toString() + "Discount{" +
-                "discount=" + discount +
-                '}';
+        return super.toString() + ", Discount: " + discount;
     }
 }
 
