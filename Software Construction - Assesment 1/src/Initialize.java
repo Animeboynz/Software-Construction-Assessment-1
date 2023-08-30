@@ -14,8 +14,8 @@ public class Initialize {
     public Initialize() {
         locations = new ArrayList<>();
         scanner = new Scanner(System.in);
-        q.loadProductsFromFile();
-        loadProductsFromFile();
+        q.loadMasterProductsList();
+        loadProductsAndInventories();
     }
 
     public void options() {
@@ -225,9 +225,14 @@ public class Initialize {
 
     public void saveandexit()
     {
-        String FILE_PATH = "save.csv";
-        q.saveProductsToFile();
+        q.saveMasterProductsList();
+        saveProductsAndInventories();
 
+    }
+
+    public void saveProductsAndInventories()
+    {
+        String FILE_PATH = "save.csv";
         try {
             PrintWriter writer = new PrintWriter(new FileWriter(FILE_PATH));
 
@@ -257,12 +262,8 @@ public class Initialize {
         }
     }
 
-
-
-    public void loadProductsFromFile() {
+    public void loadProductsAndInventories() {
         String FILE_PATH = "save.csv";
-        List<Product> productList = new ArrayList<>();
-
         try (Scanner scanner = new Scanner(new FileReader(FILE_PATH))) {
             while (scanner.hasNextLine()) {
                 String[] parts = scanner.nextLine().split(",");

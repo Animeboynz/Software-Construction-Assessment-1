@@ -20,7 +20,7 @@ public class ProductQuantity {
     public Product getProduct() {
         return products;
     }
-    
+
     @Override
     public String toString() {
         return "barcode='" + products.getBarcode() + '\'' +

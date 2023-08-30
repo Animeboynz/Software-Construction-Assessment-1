@@ -23,7 +23,7 @@ public abstract class CreateProduct
         return productslist.toString();
     }
 
-    public void saveProductsToFile() {
+    public void saveMasterProductsList() {
         try {
             PrintWriter writer = new PrintWriter(new FileWriter(FILE_PATH));
             for (Product product : getProducts()) {
@@ -35,7 +35,7 @@ public abstract class CreateProduct
         }
     }
 
-    public void loadProductsFromFile() {
+    public void loadMasterProductsList() {
         List<Product> productList = new ArrayList<>();
         try (Scanner scanner = new Scanner(new FileReader(FILE_PATH))) {
             while (scanner.hasNextLine()) {
