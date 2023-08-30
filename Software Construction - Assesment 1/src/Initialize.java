@@ -44,15 +44,21 @@ public class Initialize {
     {
         System.out.println("Enter a name for the new location: ");
         String option2 = scanner.nextLine();
-        createNewSilentLocation(option2);
+        int result = createNewSilentLocation(option2);
+        if (result == 1)
+        {
+            System.out.println("A Location with the same name already exists.");
+        }
     }
 
-    public void createNewSilentLocation(String newLocationName)
+    public int createNewSilentLocation(String newLocationName)
     {
         if (findLocationByName(newLocationName) == null)
         {
             locations.add(new Location(newLocationName));
+            return 0;
         }
+        return 1;
     }
 
 
