@@ -41,7 +41,7 @@ public class Main
                     def.addItemsToInventory();
                     break;
                 case 3:
-                    //inventoryManager.removeItemsFromInventory();
+                    def.removeItemsFromInventory();
                     break;
                 case 4:
                     //inventoryManager.moveStockLocation();

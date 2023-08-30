@@ -101,10 +101,32 @@ public class Initialize {
             if (existingIndex != -1) {
                 System.out.println("Enter Quantity to add:");
                 int quantityToAdd = scanner.nextInt();
-                findLocationByName(loc).getInv().updateQuantity(existingIndex, quantityToAdd);
+                findLocationByName(loc).getInv().updateQuantity(existingIndex, quantityToAdd, '+');
             } else {
                 findLocationByName(loc).getInv().addProduct(p);
             }
+        }
+    }
+
+    public void removeItemsFromInventory() {
+        System.out.println("Select your desired location.");
+        for (Location location : locations) {
+            System.out.println(location.getLocation());
+        }
+        String loc = scanner.nextLine();
+
+        System.out.println("Type Barcode");
+        String barcode = scanner.nextLine();
+        Product p = findProductByBarcode(barcode);
+
+        int existingIndex = findExistingProductIndex(loc, p);
+
+        if (existingIndex != -1) {
+            System.out.println("Enter Quantity to remove:");
+            int quantityToRemove = scanner.nextInt();
+            findLocationByName(loc).getInv().updateQuantity(existingIndex, quantityToRemove, '-');
+        } else {
+            //findLocationByName(loc).getInv().addProduct(p);
         }
     }
 

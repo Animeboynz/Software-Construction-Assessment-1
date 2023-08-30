@@ -22,9 +22,18 @@ public class Inventory {
         pq.add(new ProductQuantity(p, quantity));
     }
 
-    public void updateQuantity(int index, int quantityToAdd) {
+    public void updateQuantity(int index, int quantity, char sign) {
         ProductQuantity pqToUpdate = pq.get(index);
-        pqToUpdate.setQuantity(pqToUpdate.getQuantity() + quantityToAdd);
+        if (sign == '+')
+        {
+            pqToUpdate.setQuantity(pqToUpdate.getQuantity() + quantity);
+            //return 1;
+        }
+        else if (sign == '-')
+        {
+            if (pqToUpdate.getQuantity() > quantity)
+            pqToUpdate.setQuantity(pqToUpdate.getQuantity() - quantity);
+        }
     }
 
     public List<ProductQuantity> getPq() {
