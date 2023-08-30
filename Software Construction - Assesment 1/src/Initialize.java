@@ -14,8 +14,6 @@ public class Initialize {
     public Initialize() {
         locations = new ArrayList<>();
         scanner = new Scanner(System.in);
-        q.loadMasterProductsList();
-        loadProductsAndInventories();
     }
 
     public void options() {

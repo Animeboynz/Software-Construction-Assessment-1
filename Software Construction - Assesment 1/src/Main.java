@@ -6,6 +6,8 @@ public class Main
         Scanner scanner = new Scanner(System.in);
 
         Initialize def = new Initialize();
+        def.q.loadMasterProductsList();
+        def.loadProductsAndInventories();
 
         while (true)
         {
