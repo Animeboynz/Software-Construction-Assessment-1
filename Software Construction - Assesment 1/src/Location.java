@@ -13,11 +13,6 @@ public class Location {
         return location;
     }
 
-
-    public void setLocation(String location) {
-        this.location = location;
-    }
-
     @Override
     public String toString() {
         return inventory.toString();
@@ -28,11 +23,6 @@ public class Location {
         return this.inventory;
     }
 
-
-    public void setInv(Inventory i)
-    {
-        this.inventory = inventory;
-    }
 }
 
 

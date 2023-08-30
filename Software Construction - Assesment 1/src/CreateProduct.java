@@ -18,11 +18,6 @@ public abstract class CreateProduct
 
     public abstract List<Product> getProducts();
 
-
-    public List<Product> getProductslist() {
-        return productslist;
-    }
-
     public String toString()
     {
         return productslist.toString();

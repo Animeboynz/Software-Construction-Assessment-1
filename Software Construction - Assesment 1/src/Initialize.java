@@ -79,12 +79,6 @@ public class Initialize {
         return null;
     }
 
-    public String printLocations()
-    {
-        return "";
-    }
-
-
     public void listInventory() {
 
         scanner.nextLine();

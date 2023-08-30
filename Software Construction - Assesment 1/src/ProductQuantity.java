@@ -9,11 +9,6 @@ public class ProductQuantity {
         this.Quantity = Quantity;
     }
 
-    public void addProducts(Product products) {
-        this.products = products;
-        Quantity = 0;
-    }
-
     public void setQuantity(int quantity) {
         Quantity = quantity;
     }
@@ -25,14 +20,7 @@ public class ProductQuantity {
     public Product getProduct() {
         return products;
     }
-
-
-
-    public void updateAddQuantity(int quantity)
-    {
-        this.setQuantity(this.Quantity + quantity);
-    }
-
+    
     @Override
     public String toString() {
         return "barcode='" + products.getBarcode() + '\'' +

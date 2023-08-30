@@ -4,9 +4,6 @@ public class Product
     private String name;
     private double Price;
 
-    private int quantity;
-
-
     public String getBarcode() {
         return barcode;
     }

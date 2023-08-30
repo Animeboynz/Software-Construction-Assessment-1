@@ -11,7 +11,6 @@ public class Inventory {
         pq = new ArrayList<>();
     }
 
-
     public void addProduct(Product p)
     {
         System.out.println("Enter Quantity");
