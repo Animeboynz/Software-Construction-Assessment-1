@@ -38,7 +38,6 @@ public class Initialize {
     {
         System.out.println("Enter a name for the new location: ");
         String option2 = scanner.nextLine();
-        System.out.println("hi");
         locations.add(new Location(option2));
 
     }
@@ -52,7 +51,7 @@ public class Initialize {
                 return product;
             }
         }
-        System.out.println("Product does not exist. Add new product under Options First");
+        System.out.println("Product does not exist. Add new product under options first");
         return null;
     }
 

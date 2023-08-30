@@ -38,10 +38,7 @@ public class Main
                     def.listInventory();
                     break;
                 case 2:
-//                    Product p = new Product("443322", "name1", 299.90);
-
                     def.addItemsToInventory();
-                    //System.out.println("jj");
                     break;
                 case 3:
                     //inventoryManager.removeItemsFromInventory();
@@ -57,6 +54,8 @@ public class Main
                     break;
                 case 7:
                     System.exit(0);
+																//Save all variables to file
+																//def.saveandexit()
                     break;
                 default:
                     System.out.println("Invalid option. Please select again.");
