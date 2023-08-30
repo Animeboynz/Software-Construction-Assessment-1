@@ -1,3 +1,4 @@
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -16,6 +17,7 @@ public class Initialize {
         locations = new ArrayList<>();
         scanner = new Scanner(System.in);
         q.loadProductsFromFile();
+        loadProductsFromFile();
     }
 
     public void options() {
@@ -42,8 +44,15 @@ public class Initialize {
     {
         System.out.println("Enter a name for the new location: ");
         String option2 = scanner.nextLine();
-        locations.add(new Location(option2));
+        createNewSilentLocation(option2);
+    }
 
+    public void createNewSilentLocation(String newLocationName)
+    {
+        if (findLocationByName(newLocationName) == null)
+        {
+            locations.add(new Location(newLocationName));
+        }
     }
 
 
@@ -204,7 +213,32 @@ public class Initialize {
 
 
 
+    public void loadProductsFromFile() {
+        String FILE_PATH = "save.csv";
+        List<Product> productList = new ArrayList<>();
 
+        try (Scanner scanner = new Scanner(new FileReader(FILE_PATH))) {
+            while (scanner.hasNextLine()) {
+                String[] parts = scanner.nextLine().split(",");
+                if (parts.length == 5) {
+                    String location = parts[0];
+                    //int quantity = Integer.parseInt(parts[1]);
+                    String barcode = parts[2];
+                    String name = parts[3];
+                    //double price = Double.parseDouble(parts[4]);
+                    //productList.add(new Product(barcode, name, price));
+                    createNewSilentLocation(location);
+                    if (!barcode.equals("NULL"))
+                    {
+                        findLocationByName(location).getInv().addSilentProduct(new Product(barcode, name, Double.parseDouble(parts[4])), Integer.parseInt(parts[1]));
+                    }
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        //productslist.addAll(productList);
+    }
 
 
 

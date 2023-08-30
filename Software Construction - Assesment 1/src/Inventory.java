@@ -23,6 +23,11 @@ public class Inventory {
         pq.add(new ProductQuantity(p, quantity));
     }
 
+    public void addSilentProduct(Product p, int quantity)
+    {
+        pq.add(new ProductQuantity(p, quantity));
+    }
+
     public int updateQuantity(int index, int quantity, char sign) {
         ProductQuantity pqToUpdate = pq.get(index);
         if (sign == '+')
