@@ -1,1 +1,11 @@
 DATE/TIME, Action
+31/08/2023 20:20:34,Created New Location "Store"
+31/08/2023 20:20:48,Created New Location "Backroom"
+31/08/2023 20:20:53,Created New Location "Offsite"
+31/08/2023 20:21:12,Created New Product "Product 1"(123) with price $119.98
+31/08/2023 20:21:27,Created New Product "Product 2"(456) with price $199.98
+31/08/2023 20:21:44,Created New Product "Product 3"(789) with price $299.98
+31/08/2023 20:23:54,Added "Product 1"(123)x24 to Store
+31/08/2023 20:24:40,Added "Product 2"(456)x31 to Store
+31/08/2023 20:25:23,Removed "Product 1"(123)x11 from Store
+31/08/2023 20:26:20,Moved "Product 2"(456)x13 from Store to Backroom

@@ -1,6 +1,7 @@
 import java.util.Scanner;
 public class Main
 {
+
     public static void main(String[] args)
     {
         Scanner scanner = new Scanner(System.in);
@@ -21,6 +22,7 @@ public class Main
             System.out.println("6. View Log");
             System.out.println("7. Config");
             System.out.println("8. Exit");
+
 
             int option = scanner.nextInt();
 

@@ -12,7 +12,7 @@ public abstract class CreateProduct
 
     Scanner scanner = new Scanner(System.in);
 
-    public abstract void addNewProduct();
+    public abstract void addNewProduct(Product newProduct);
 
     public abstract List<Product> getProducts();
 
