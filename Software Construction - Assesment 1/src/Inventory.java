@@ -11,10 +11,8 @@ public class Inventory {
         pq = new ArrayList<>();
     }
 
-    public void addProduct(Product p)
+    public void addProduct(Product p, int quantity)
     {
-        System.out.println("Enter Quantity");
-        int quantity = scanner.nextInt();
         pq.add(new ProductQuantity(p, quantity));
     }
 
@@ -28,18 +26,20 @@ public class Inventory {
         if (sign == '+')
         {
             pqToUpdate.setQuantity(pqToUpdate.getQuantity() + quantity);
-            //return 0;
+            return 0;
         }
         else if (sign == '-')
         {
             if (pqToUpdate.getQuantity() > quantity)
             {
                 pqToUpdate.setQuantity(pqToUpdate.getQuantity() - quantity);
+                return 0;
             }
             else if (pqToUpdate.getQuantity() == quantity)
             {
                 //Implement delete from inventory if quantity = 0
-                return 1;
+                this.deletePQ(index);
+                return 0;
             }
             else if (pqToUpdate.getQuantity() < quantity)
             {

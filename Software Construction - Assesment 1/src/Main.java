@@ -17,8 +17,9 @@ public class Main
             System.out.println("3. Remove items from inventory");
             System.out.println("4. Move stock location");
             System.out.println("5. Check for stock updates");
-            System.out.println("6. Config");
-            System.out.println("7. Exit");
+            System.out.println("6. View Log");
+            System.out.println("7. Config");
+            System.out.println("8. Exit");
 
             int option = scanner.nextInt();
 
@@ -40,9 +41,12 @@ public class Main
                     // Implement stock update checking
                     break;
                 case 6:
-                    def.options();
+                    // Implement Log
                     break;
                 case 7:
+                    def.options();
+                    break;
+                case 8:
                     //Save all variables to file & exit
                     def.saveandexit();
                     System.exit(0);

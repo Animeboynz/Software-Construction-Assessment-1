@@ -10,6 +10,7 @@ public class Initialize {
     private List<Location> locations;
     private Scanner scanner;
     Pro q = new Pro();
+    Log log = new Log();
 
     public Initialize() {
         locations = new ArrayList<>();
@@ -41,6 +42,7 @@ public class Initialize {
         System.out.println("Enter a name for the new location: ");
         String option2 = scanner.nextLine();
         int result = createNewSilentLocation(option2);
+        log.logData("Created New Location " + option2);
         if (result == 1)
         {
             System.out.println("A Location with the same name already exists.");
@@ -109,8 +111,13 @@ public class Initialize {
                 System.out.println("Enter Quantity to add:");
                 int quantityToAdd = scanner.nextInt();
                 findLocationByName(loc).getInv().updateQuantity(existingIndex, quantityToAdd, '+');
+                log.logData("Added " + p.getName() + "(" + p.getBarcode() + ")x" + quantityToAdd + " to " + loc);
+
             } else {
-                findLocationByName(loc).getInv().addProduct(p);
+                System.out.println("Enter Quantity");
+                int quantity = scanner.nextInt();
+                findLocationByName(loc).getInv().addProduct(p, quantity);
+                log.logData("Added " + p.getName() + "(" + p.getBarcode() + ")x" + quantity + " to " + loc);
             }
         }
     }
@@ -125,7 +132,9 @@ public class Initialize {
             if (existingIndex != -1) {
                 findLocationByName(loc).getInv().updateQuantity(existingIndex, quantityToAdd, '+');
             } else {
-                findLocationByName(loc).getInv().addProduct(p);
+                System.out.println("Enter Quantity");
+                int quantity = scanner.nextInt();
+                findLocationByName(loc).getInv().addProduct(p, quantity);
             }
         }
     }
@@ -147,6 +156,7 @@ public class Initialize {
             System.out.println("Enter Quantity to remove:");
             int quantityToRemove = scanner.nextInt();
             int removeStatus = findLocationByName(loc).getInv().updateQuantity(existingIndex, quantityToRemove, '-');
+            log.logData("Removed " + p.getName() + "(" + p.getBarcode() + ")x" + quantityToRemove + " from " + loc);
             if (removeStatus == 0)
             {
                 System.out.println("Removed Items from Inventory Successfully");
@@ -208,9 +218,13 @@ public class Initialize {
                     //Move Product
                     findLocationByName(source).getInv().updateQuantity(existingIndex, qtomove, '-');
                     addItemsToInventorySilent(target, barcode, qtomove);
+                    ///////////
+                    log.logData("Moved " + p.getName() + "(" + p.getBarcode() + ")x" + qtomove + " from " + source + " to " + target);
                 } else if (qtomove == findLocationByName(source).getInv().getPq().get(existingIndex).getQuantity()) {
                     findLocationByName(source).getInv().deletePQ(existingIndex);
                     addItemsToInventorySilent(target, barcode, qtomove);
+                    ///////////
+                    log.logData("Moved " + p.getName() + "(" + p.getBarcode() + ")x" + qtomove + " from " + source + " to " + target);
                 } else {
                     System.out.println("The quantity you have entered is larger than what exists in the Source Inventory");
                 }
