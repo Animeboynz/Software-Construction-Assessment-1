@@ -10,7 +10,7 @@ public abstract class CreateProduct
 {
     public List<Product> productslist = new ArrayList<>();
 
-    private static final String FILE_PATH = "products.csv";
+    private static final String FILE_PATH = StringResources.FILE_PATH_1;
 
     Scanner scanner = new Scanner(System.in);
 

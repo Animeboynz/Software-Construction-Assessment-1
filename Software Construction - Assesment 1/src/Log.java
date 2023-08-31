@@ -21,10 +21,10 @@ public class Log
 
     public void logData(String data)
     {
-        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+        SimpleDateFormat formatter = new SimpleDateFormat(StringResources.LOG_DATE_TIME_FORMAT);
         Date date = new Date();
         this.log.put(formatter.format(date), data);
-        System.out.println(formatter.format(date) + data);
+        System.out.println(formatter.format(date) + " " + data);
     }
 
     public void printLog()
@@ -32,6 +32,15 @@ public class Log
         for(Map.Entry log: this.log.entrySet()){
             System.out.println(log.getKey()+ " "+log.getValue());
         }
+    }
+
+    public void saveLog()
+    {
+
+    }
+    public void loadLog()
+    {
+
     }
 
 }

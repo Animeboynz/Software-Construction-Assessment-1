@@ -52,7 +52,7 @@ public class Main
                     System.exit(0);
                     break;
                 default:
-                    System.out.println("Invalid option. Please select again.");
+                    System.out.println(StringResources.INVALID_USER_OPTION_SELECT);
             }
         }
     }

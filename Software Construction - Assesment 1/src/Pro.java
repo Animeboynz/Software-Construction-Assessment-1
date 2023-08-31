@@ -5,25 +5,25 @@ public class Pro extends CreateProduct{
     public void addNewProduct()
     {
 
-        System.out.print("Enter product barcode: ");
+        System.out.print(StringResources.TYPE_BARCODE);
         String barcode = scanner.next();
 
         if (!doesProductExist(barcode))
         {
-            System.out.print("Enter product name: ");
+            System.out.print(StringResources.PROMPT_PRODUCT_NAME);
             scanner.nextLine(); // Consume the newline left from previous input
             String name = scanner.nextLine(); // Read the entire line, including spaces
-            System.out.print("Enter product price: ");
+            System.out.print(StringResources.PROMPT_PRODUCT_PRICE);
             double price = Double.parseDouble(scanner.next());
 
 
             Product newProduct = new Product(barcode, name, price);
             productslist.add(newProduct);
 
-            System.out.println("Product added successfully.");
+            System.out.println(StringResources.PRODUCT_ADD_SUCCESS);
         }
         else {
-            System.out.println("Product with the same barcode already exists.");
+            System.out.println(StringResources.PRODUCT_BARCODE_EXISTS);
         }
     }
 

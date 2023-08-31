@@ -33,19 +33,19 @@ public class Initialize {
                 createNewLocation();
                 break;
             default:
-                System.out.println("Invalid config option.");
+                System.out.println(StringResources.INVALID_USER_OPTION_SELECT_NR);
         }
     }
 
     public void createNewLocation()
     {
-        System.out.println("Enter a name for the new location: ");
+        System.out.println(StringResources.LOCATION_NEW_NAME);
         String option2 = scanner.nextLine();
         int result = createNewSilentLocation(option2);
         log.logData("Created New Location " + option2);
         if (result == 1)
         {
-            System.out.println("A Location with the same name already exists.");
+            System.out.println(StringResources.LOCATION_EXISTS);
         }
     }
 
@@ -66,7 +66,7 @@ public class Initialize {
                 return product;
             }
         }
-        System.out.println("Product does not exist. Add new product under options first");
+        System.out.println(StringResources.PRODUCT_NOT_EXIST);
         return null;
     }
 
@@ -82,7 +82,7 @@ public class Initialize {
     public void listInventory() {
 
         scanner.nextLine();
-        System.out.println("Select your desired location.");
+        System.out.println(StringResources.LOCATION_SELECT);
         for (Location location : locations) {
             System.out.println(location.getLocation());
         }
@@ -94,13 +94,13 @@ public class Initialize {
     }
 
     public void addItemsToInventory() {
-        System.out.println("Select your desired location.");
+        System.out.println(StringResources.LOCATION_SELECT);
         for (Location location : locations) {
             System.out.println(location.getLocation());
         }
         String loc = scanner.nextLine();
 
-        System.out.println("Type Barcode");
+        System.out.println(StringResources.TYPE_BARCODE);
         String barcode = scanner.nextLine();
         Product p = findProductByBarcode(barcode);
 
@@ -108,13 +108,13 @@ public class Initialize {
             int existingIndex = findExistingProductIndex(loc, p);
 
             if (existingIndex != -1) {
-                System.out.println("Enter Quantity to add:");
+                System.out.println(StringResources.PROMPT_QUANTITY_TO_ADD);
                 int quantityToAdd = scanner.nextInt();
                 findLocationByName(loc).getInv().updateQuantity(existingIndex, quantityToAdd, '+');
                 log.logData("Added " + p.getName() + "(" + p.getBarcode() + ")x" + quantityToAdd + " to " + loc);
 
             } else {
-                System.out.println("Enter Quantity");
+                System.out.println(StringResources.PROMPT_QUANTITY_TO_ADD);
                 int quantity = scanner.nextInt();
                 findLocationByName(loc).getInv().addProduct(p, quantity);
                 log.logData("Added " + p.getName() + "(" + p.getBarcode() + ")x" + quantity + " to " + loc);
@@ -132,41 +132,39 @@ public class Initialize {
             if (existingIndex != -1) {
                 findLocationByName(loc).getInv().updateQuantity(existingIndex, quantityToAdd, '+');
             } else {
-                System.out.println("Enter Quantity");
-                int quantity = scanner.nextInt();
-                findLocationByName(loc).getInv().addProduct(p, quantity);
+                findLocationByName(loc).getInv().addProduct(p, quantityToAdd);
             }
         }
     }
 
     public void removeItemsFromInventory() {
-        System.out.println("Select your desired location.");
+        System.out.println(StringResources.LOCATION_SELECT);
         for (Location location : locations) {
             System.out.println(location.getLocation());
         }
         String loc = scanner.nextLine();
 
-        System.out.println("Type Barcode");
+        System.out.println(StringResources.TYPE_BARCODE);
         String barcode = scanner.nextLine();
         Product p = findProductByBarcode(barcode);
 
         int existingIndex = findExistingProductIndex(loc, p);
 
         if (existingIndex != -1) {
-            System.out.println("Enter Quantity to remove:");
+            System.out.println(StringResources.PROMPT_QUANTITY_TO_REMOVE);
             int quantityToRemove = scanner.nextInt();
             int removeStatus = findLocationByName(loc).getInv().updateQuantity(existingIndex, quantityToRemove, '-');
             log.logData("Removed " + p.getName() + "(" + p.getBarcode() + ")x" + quantityToRemove + " from " + loc);
             if (removeStatus == 0)
             {
-                System.out.println("Removed Items from Inventory Successfully");
+                System.out.println(StringResources.PRODUCT_REMOVE_SUCCESS);
             }
             if (removeStatus == 1)
             {
-                System.out.println("Error! Check if you are removing more than what exists in the inventory");
+                System.out.println(StringResources.PRODUCT_REMOVE_FAIL);
             }
         } else {
-            System.out.println("That product does not exist in this inventory");
+            System.out.println(StringResources.PRODUCT_NOT_EXIST_UNDER_INV);
         }
     }
 
@@ -187,15 +185,15 @@ public class Initialize {
     {
         if (locations.size() == 1)
         {
-            System.out.println("You only have 1 location, Create more to use this function");
+            System.out.println(StringResources.LOCATION_ONLY_ONE);
         }
         else {
-            System.out.println("Select Source Inventory");
+            System.out.println(StringResources.SOURCE_INV);
             for (Location location : locations) {
                 System.out.println(location.getLocation());
             }
             String source = scanner.nextLine();
-            System.out.println("Select Destination Inventory");
+            System.out.println(StringResources.DESTINATION_INV);
             for (Location location : locations) {
                 if (!location.getLocation().equals(source))
                 {
@@ -203,7 +201,7 @@ public class Initialize {
                 }
             }
             String target = scanner.nextLine();
-            System.out.println("Enter Product Barcode");
+            System.out.println(StringResources.TYPE_BARCODE);
             String barcode = scanner.nextLine();
 
             Product p = findProductByBarcode(barcode);
@@ -211,7 +209,7 @@ public class Initialize {
 
             if (existingIndex != -1)//If product exists in inventory
             {
-                System.out.println("Enter Quantity to Move");
+                System.out.println(StringResources.PROMPT_QUANTITY_TO_MOVE);
                 int qtomove = Integer.parseInt(scanner.nextLine());
                 if (qtomove < findLocationByName(source).getInv().getPq().get(existingIndex).getQuantity())//If qtomove <= quantity of that product in source
                 {
@@ -226,11 +224,11 @@ public class Initialize {
                     ///////////
                     log.logData("Moved " + p.getName() + "(" + p.getBarcode() + ")x" + qtomove + " from " + source + " to " + target);
                 } else {
-                    System.out.println("The quantity you have entered is larger than what exists in the Source Inventory");
+                    System.out.println(StringResources.PRODUCT_MOVE_FAIL);
                 }
             }
             else {
-                System.out.println("This product does not exist in this location");
+                System.out.println(StringResources.PRODUCT_NOT_EXIST_UNDER_LOCATION);
             }
         }
     }
@@ -244,7 +242,7 @@ public class Initialize {
 
     public void saveProductsAndInventories()
     {
-        String FILE_PATH = "save.csv";
+        String FILE_PATH = StringResources.FILE_PATH_2;
         try {
             PrintWriter writer = new PrintWriter(new FileWriter(FILE_PATH));
 
@@ -275,7 +273,7 @@ public class Initialize {
     }
 
     public void loadProductsAndInventories() {
-        String FILE_PATH = "save.csv";
+        String FILE_PATH = StringResources.FILE_PATH_2;
         try (Scanner scanner = new Scanner(new FileReader(FILE_PATH))) {
             while (scanner.hasNextLine()) {
                 String[] parts = scanner.nextLine().split(",");
