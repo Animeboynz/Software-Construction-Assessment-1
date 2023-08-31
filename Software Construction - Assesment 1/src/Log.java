@@ -1,6 +1,7 @@
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class Log
@@ -15,7 +16,7 @@ public class Log
 
     public Log()
     {
-        log = new HashMap<String, String>();
+        log = new LinkedHashMap<String, String>();
     }
 
     public void logData(String data)
