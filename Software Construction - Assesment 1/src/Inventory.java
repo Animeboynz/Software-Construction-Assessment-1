@@ -1,11 +1,9 @@
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 public class Inventory {
 
     private List<ProductQuantity> pq;
-    private Scanner scanner = new Scanner(System.in);
 
     public Inventory() {
         pq = new ArrayList<>();
@@ -61,10 +59,10 @@ public class Inventory {
 
     @Override
     public String toString() {
-        String out= "";
+        StringBuilder out= new StringBuilder();
         for(ProductQuantity p : pq){
-            out += p.toString() + "\n";
+            out.append(p.toString()).append("\n");
         }
-        return out;
+        return out.toString();
     }
 }

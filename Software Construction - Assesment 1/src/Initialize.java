@@ -210,19 +210,19 @@ public class Initialize {
             if (existingIndex != -1)//If product exists in inventory
             {
                 System.out.println(StringResources.PROMPT_QUANTITY_TO_MOVE);
-                int qtomove = Integer.parseInt(scanner.nextLine());
-                if (qtomove < findLocationByName(source).getInv().getPq().get(existingIndex).getQuantity())//If qtomove <= quantity of that product in source
+                int quantityToMove = Integer.parseInt(scanner.nextLine());
+                if (quantityToMove < findLocationByName(source).getInv().getPq().get(existingIndex).getQuantity())//If quantityToMove <= quantity of that product in source
                 {
                     //Move Product
-                    findLocationByName(source).getInv().updateQuantity(existingIndex, qtomove, '-');
-                    addItemsToInventorySilent(target, barcode, qtomove);
+                    findLocationByName(source).getInv().updateQuantity(existingIndex, quantityToMove, '-');
+                    addItemsToInventorySilent(target, barcode, quantityToMove);
                     ///////////
-                    log.logData("Moved " + p.getName() + "(" + p.getBarcode() + ")x" + qtomove + " from " + source + " to " + target);
-                } else if (qtomove == findLocationByName(source).getInv().getPq().get(existingIndex).getQuantity()) {
+                    log.logData("Moved " + p.getName() + "(" + p.getBarcode() + ")x" + quantityToMove + " from " + source + " to " + target);
+                } else if (quantityToMove == findLocationByName(source).getInv().getPq().get(existingIndex).getQuantity()) {
                     findLocationByName(source).getInv().deletePQ(existingIndex);
-                    addItemsToInventorySilent(target, barcode, qtomove);
+                    addItemsToInventorySilent(target, barcode, quantityToMove);
                     ///////////
-                    log.logData("Moved " + p.getName() + "(" + p.getBarcode() + ")x" + qtomove + " from " + source + " to " + target);
+                    log.logData("Moved " + p.getName() + "(" + p.getBarcode() + ")x" + quantityToMove + " from " + source + " to " + target);
                 } else {
                     System.out.println(StringResources.PRODUCT_MOVE_FAIL);
                 }
@@ -233,7 +233,7 @@ public class Initialize {
         }
     }
 
-    public void saveandexit()
+    public void saveAndExit()
     {
         q.saveMasterProductsList();
         saveProductsAndInventories();

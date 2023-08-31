@@ -21,7 +21,7 @@ public class Log
 
     public Log()
     {
-        log = new LinkedHashMap<String, String>();
+        log = new LinkedHashMap<>();
     }
 
     public void logData(String data)

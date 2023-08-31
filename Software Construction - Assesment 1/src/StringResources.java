@@ -33,14 +33,10 @@ public class StringResources {
     public static final String PROMPT_QUANTITY_TO_REMOVE = "Enter Quantity to remove:";
     public static final String PROMPT_QUANTITY_TO_MOVE = "Enter Quantity to Move:";
 
-    /////////////////////////////////////////////////////////////////////////////////////////////////
     public static final String PRODUCT_REMOVE_SUCCESS = "Removed Items from Inventory Successfully";
     public static final String PRODUCT_REMOVE_FAIL = "Error! Check if you are removing more than what exists in the inventory";
     public static final String PRODUCT_MOVE_FAIL = "The quantity you have entered is larger than what exists in the Source Inventory";
-    /////////////////////////////////////////////////////////////////////////////////////////////////
 
-    //public static final String _ = "";
-    //public static final String _ = "";
 
 
     /*

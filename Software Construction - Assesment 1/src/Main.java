@@ -49,7 +49,7 @@ public class Main
                     break;
                 case 8:
                     //Save all variables to file & exit
-                    def.saveandexit();
+                    def.saveAndExit();
                     System.exit(0);
                     break;
                 default:
