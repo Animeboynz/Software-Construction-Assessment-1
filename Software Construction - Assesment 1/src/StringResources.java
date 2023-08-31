@@ -1,8 +1,11 @@
 public class StringResources {
 
+    //PERSISTENT SAVE LOCATIONS
     public static final String FILE_PATH_1 = "products.csv";//Master Products List
     public static final String FILE_PATH_2 = "save.csv";//Products and Locations
+    public static final String FILE_PATH_3 = "log.csv";//Log
 
+    //LOG DATE & TIME FORMAT
     public static final String LOG_DATE_TIME_FORMAT = "dd/MM/yyyy HH:mm:ss";
 
     //USER ERROR
@@ -35,15 +38,17 @@ public class StringResources {
     public static final String PRODUCT_REMOVE_FAIL = "Error! Check if you are removing more than what exists in the inventory";
     public static final String PRODUCT_MOVE_FAIL = "The quantity you have entered is larger than what exists in the Source Inventory";
     /////////////////////////////////////////////////////////////////////////////////////////////////
+
     //public static final String _ = "";
     //public static final String _ = "";
 
 
     /*
-    public static String getString(String stringResourceId) {
-        return switch (stringResourceId) {
+    public static String getString(String stringResourceId)
+    {
+        return switch (stringResourceId)
+        {
             case "R.string.pref_category_display" -> PREF_CATEGORY_DISPLAY;
-
             default -> "";
         };
     }

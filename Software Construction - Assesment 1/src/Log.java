@@ -1,6 +1,11 @@
+import java.io.BufferedReader;
+import java.io.PrintWriter;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.HashMap;
+//import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -34,13 +39,28 @@ public class Log
         }
     }
 
-    public void saveLog()
-    {
-
+    public void saveLog() {
+        try (PrintWriter writer = new PrintWriter(new FileWriter(StringResources.FILE_PATH_3))) {
+            for (Map.Entry<String, String> entry : log.entrySet()) {
+                writer.println(entry.getKey() + "," + entry.getValue());
+            }
+        } catch (IOException e) {
+            System.out.println("Error saving log: " + e.getMessage());
+        }
     }
-    public void loadLog()
-    {
 
+    public void loadLog() {
+        try (BufferedReader reader = new BufferedReader(new FileReader(StringResources.FILE_PATH_3))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] parts = line.split(",");
+                if (parts.length == 2) {
+                    log.put(parts[0], parts[1]);
+                }
+            }
+        } catch (IOException e) {
+            System.out.println("Error loading log: " + e.getMessage());
+        }
     }
 
 }

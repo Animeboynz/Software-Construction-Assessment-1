@@ -8,6 +8,7 @@ public class Main
         Initialize def = new Initialize();
         def.q.loadMasterProductsList();
         def.loadProductsAndInventories();
+        def.log.loadLog();
 
         while (true)
         {

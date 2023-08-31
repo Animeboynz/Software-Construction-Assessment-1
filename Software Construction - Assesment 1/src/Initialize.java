@@ -237,6 +237,7 @@ public class Initialize {
     {
         q.saveMasterProductsList();
         saveProductsAndInventories();
+        log.saveLog();
 
     }
 
