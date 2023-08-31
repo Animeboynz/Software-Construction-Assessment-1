@@ -9,3 +9,7 @@ DATE/TIME, Action
 31/08/2023 20:24:40,Added "Product 2"(456)x31 to Store
 31/08/2023 20:25:23,Removed "Product 1"(123)x11 from Store
 31/08/2023 20:26:20,Moved "Product 2"(456)x13 from Store to Backroom
+31/08/2023 23:06:35,Added "Product 1"(123)x11 to Store
+31/08/2023 23:06:55,Added "Product 2"(456)x3 to Store
+31/08/2023 23:07:19,Removed "Product 2"(456)x2 from Store
+31/08/2023 23:07:51,Removed "Product 2"(456)x7 from Backroom

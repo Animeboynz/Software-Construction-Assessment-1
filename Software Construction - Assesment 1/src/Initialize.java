@@ -102,8 +102,6 @@ public class Initialize {
     }
 
     public void listInventory() {
-
-        scanner.nextLine();
         System.out.println(StringResources.LOCATION_SELECT);
         for (Location location : locations) {
             System.out.println(location.getLocation());
@@ -121,7 +119,6 @@ public class Initialize {
             System.out.println(location.getLocation());
         }
         String loc = scanner.nextLine();
-
         System.out.println(StringResources.TYPE_BARCODE);
         String barcode = scanner.nextLine();
         Product p = findProductByBarcode(barcode);
@@ -132,12 +129,14 @@ public class Initialize {
             if (existingIndex != -1) {
                 System.out.println(StringResources.PROMPT_QUANTITY_TO_ADD);
                 int quantityToAdd = scanner.nextInt();
+                scanner.nextLine();//Prompt Skip Test
                 findLocationByName(loc).getInv().updateQuantity(existingIndex, quantityToAdd, '+');
                 log.logData("Added \"" + p.getName() + "\"(" + p.getBarcode() + ")x" + quantityToAdd + " to " + loc);
 
             } else {
                 System.out.println(StringResources.PROMPT_QUANTITY_TO_ADD);
                 int quantity = scanner.nextInt();
+                scanner.nextLine();//Prompt Skip Test
                 findLocationByName(loc).getInv().addProduct(p, quantity);
                 log.logData("Added \"" + p.getName() + "\"(" + p.getBarcode() + ")x" + quantity + " to " + loc);
             }
@@ -175,6 +174,7 @@ public class Initialize {
         if (existingIndex != -1) {
             System.out.println(StringResources.PROMPT_QUANTITY_TO_REMOVE);
             int quantityToRemove = scanner.nextInt();
+            scanner.nextLine();//Prompt Skip Test
             int removeStatus = findLocationByName(loc).getInv().updateQuantity(existingIndex, quantityToRemove, '-');
             log.logData("Removed \"" + p.getName() + "\"(" + p.getBarcode() + ")x" + quantityToRemove + " from " + loc);
             if (removeStatus == 0)
@@ -232,7 +232,8 @@ public class Initialize {
             if (existingIndex != -1)//If product exists in inventory
             {
                 System.out.println(StringResources.PROMPT_QUANTITY_TO_MOVE);
-                int quantityToMove = Integer.parseInt(scanner.nextLine());
+                int quantityToMove = scanner.nextInt();
+                scanner.nextLine();//Prompt Skip Test
                 if (quantityToMove < findLocationByName(source).getInv().getPq().get(existingIndex).getQuantity())//If quantityToMove <= quantity of that product in source
                 {
                     //Move Product
