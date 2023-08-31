@@ -41,7 +41,7 @@ public class Main
                     // Implement stock update checking
                     break;
                 case 6:
-                    // Implement Log
+                    def.log.printLog();
                     break;
                 case 7:
                     def.options();

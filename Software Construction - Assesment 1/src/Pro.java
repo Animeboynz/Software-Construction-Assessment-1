@@ -11,7 +11,8 @@ public class Pro extends CreateProduct{
         if (!doesProductExist(barcode))
         {
             System.out.print("Enter product name: ");
-            String name = scanner.next();
+            scanner.nextLine(); // Consume the newline left from previous input
+            String name = scanner.nextLine(); // Read the entire line, including spaces
             System.out.print("Enter product price: ");
             double price = Double.parseDouble(scanner.next());
 

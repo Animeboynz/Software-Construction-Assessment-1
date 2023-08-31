@@ -22,8 +22,15 @@ public class Log
     {
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
         Date date = new Date();
-        log.put(formatter.format(date), data);
+        this.log.put(formatter.format(date), data);
         System.out.println(formatter.format(date) + data);
+    }
+
+    public void printLog()
+    {
+        for(Map.Entry log: this.log.entrySet()){
+            System.out.println(log.getKey()+ " "+log.getValue());
+        }
     }
 
 }
