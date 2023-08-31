@@ -41,6 +41,7 @@ public class Log
 
     public void saveLog() {
         try (PrintWriter writer = new PrintWriter(new FileWriter(StringResources.FILE_PATH_3))) {
+            writer.println("DATE/TIME, Action");
             for (Map.Entry<String, String> entry : log.entrySet()) {
                 writer.println(entry.getKey() + "," + entry.getValue());
             }
@@ -52,6 +53,7 @@ public class Log
     public void loadLog() {
         try (BufferedReader reader = new BufferedReader(new FileReader(StringResources.FILE_PATH_3))) {
             String line;
+            reader.readLine();
             while ((line = reader.readLine()) != null) {
                 String[] parts = line.split(",");
                 if (parts.length == 2) {

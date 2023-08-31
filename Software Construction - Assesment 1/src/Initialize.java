@@ -246,6 +246,7 @@ public class Initialize {
         String FILE_PATH = StringResources.FILE_PATH_2;
         try {
             PrintWriter writer = new PrintWriter(new FileWriter(FILE_PATH));
+            writer.println("Inventory, Quantity, Barcode, Name, Price");
 
             for (int i = 0; i < locations.size(); i++) {
 
@@ -276,6 +277,7 @@ public class Initialize {
     public void loadProductsAndInventories() {
         String FILE_PATH = StringResources.FILE_PATH_2;
         try (Scanner scanner = new Scanner(new FileReader(FILE_PATH))) {
+            scanner.nextLine();
             while (scanner.hasNextLine()) {
                 String[] parts = scanner.nextLine().split(",");
                 if (parts.length == 5) {

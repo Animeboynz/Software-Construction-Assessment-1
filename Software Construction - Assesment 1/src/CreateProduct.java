@@ -10,8 +10,6 @@ public abstract class CreateProduct
 {
     public List<Product> productslist = new ArrayList<>();
 
-    private static final String FILE_PATH = StringResources.FILE_PATH_1;
-
     Scanner scanner = new Scanner(System.in);
 
     public abstract void addNewProduct();
@@ -25,7 +23,8 @@ public abstract class CreateProduct
 
     public void saveMasterProductsList() {
         try {
-            PrintWriter writer = new PrintWriter(new FileWriter(FILE_PATH));
+            PrintWriter writer = new PrintWriter(new FileWriter(StringResources.FILE_PATH_1));
+            writer.println("Barcode, Name, Price");
             for (Product product : getProducts()) {
                 writer.println(product.getBarcode() + "," + product.getName() + "," + product.getPrice());
             }
@@ -37,7 +36,8 @@ public abstract class CreateProduct
 
     public void loadMasterProductsList() {
         List<Product> productList = new ArrayList<>();
-        try (Scanner scanner = new Scanner(new FileReader(FILE_PATH))) {
+        try (Scanner scanner = new Scanner(new FileReader(StringResources.FILE_PATH_1))) {
+            scanner.nextLine();
             while (scanner.hasNextLine()) {
                 String[] parts = scanner.nextLine().split(",");
                 if (parts.length == 3) {
