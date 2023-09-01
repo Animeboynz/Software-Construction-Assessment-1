@@ -7,6 +7,7 @@ public class Main
         Scanner scanner = new Scanner(System.in);
 
         Initialize def = new Initialize();
+
         def.q.loadMasterProductsList();
         def.loadProductsAndInventories();
         def.log.loadLog();
@@ -24,32 +25,32 @@ public class Main
             System.out.println("8. Exit");
 
 
-            int option = scanner.nextInt();
+            String option = scanner.nextLine();
 
             switch (option)
             {
-                case 1:
+                case "1":
                     def.listInventory();
                     break;
-                case 2:
+                case "2":
                     def.addItemsToInventory();
                     break;
-                case 3:
+                case "3":
                     def.removeItemsFromInventory();
                     break;
-                case 4:
+                case "4":
                     def.moveStockLocation();
                     break;
-                case 5:
+                case "5":
                     // Implement stock update checking
                     break;
-                case 6:
+                case "6":
                     def.log.printLog();
                     break;
-                case 7:
+                case "7":
                     def.options();
                     break;
-                case 8:
+                case "8":
                     //Save all variables to file & exit
                     def.saveAndExit();
                     System.exit(0);
