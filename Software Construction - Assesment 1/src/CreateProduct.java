@@ -36,7 +36,8 @@ public abstract class CreateProduct
 
     public void loadMasterProductsList() {
         List<Product> productList = new ArrayList<>();
-        try (Scanner scanner = new Scanner(new FileReader(StringResources.FILE_PATH_1))) {
+        try {
+            Scanner scanner = new Scanner(new FileReader(StringResources.FILE_PATH_1));
             scanner.nextLine();
             while (scanner.hasNextLine()) {
                 String[] parts = scanner.nextLine().split(",");
