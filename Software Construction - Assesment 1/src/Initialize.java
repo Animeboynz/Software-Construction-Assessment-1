@@ -195,8 +195,8 @@ public class Initialize {
         Location loc = findLocationByName(location);
         if (loc != null) {
             Inventory inv = loc.getInv();
-            for (int i = 0; i < inv.getInventory().size(); i++) {
-                if (inv.getInventory().get(i).getProduct().getBarcode().equals(product.getBarcode())) {
+            for (int i = 0; i < inv.getPq().size(); i++) {
+                if (inv.getPq().get(i).getProduct().getBarcode().equals(product.getBarcode())) {
                     return i;
                 }
             }
