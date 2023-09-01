@@ -98,6 +98,7 @@ public class Initialize {
                 return location;
             }
         }
+        System.out.println(StringResources.LOCATION_NOT_EXIST);
         return null;
     }
 
@@ -194,8 +195,8 @@ public class Initialize {
         Location loc = findLocationByName(location);
         if (loc != null) {
             Inventory inv = loc.getInv();
-            for (int i = 0; i < inv.getPq().size(); i++) {
-                if (inv.getPq().get(i).getProduct().getBarcode().equals(product.getBarcode())) {
+            for (int i = 0; i < inv.getInventory().size(); i++) {
+                if (inv.getInventory().get(i).getProduct().getBarcode().equals(product.getBarcode())) {
                     return i;
                 }
             }
@@ -234,14 +235,14 @@ public class Initialize {
                 System.out.println(StringResources.PROMPT_QUANTITY_TO_MOVE);
                 int quantityToMove = scanner.nextInt();
                 scanner.nextLine();//Prompt Skip Test
-                if (quantityToMove < findLocationByName(source).getInv().getPq().get(existingIndex).getQuantity())//If quantityToMove <= quantity of that product in source
+                if (quantityToMove < findLocationByName(source).getInv().getInventory().get(existingIndex).getQuantity())//If quantityToMove <= quantity of that product in source
                 {
                     //Move Product
                     findLocationByName(source).getInv().updateQuantity(existingIndex, quantityToMove, '-');
                     addItemsToInventorySilent(target, barcode, quantityToMove);
                     ///////////
                     log.logData("Moved \"" + p.getName() + "\"(" + p.getBarcode() + ")x" + quantityToMove + " from " + source + " to " + target);
-                } else if (quantityToMove == findLocationByName(source).getInv().getPq().get(existingIndex).getQuantity()) {
+                } else if (quantityToMove == findLocationByName(source).getInv().getInventory().get(existingIndex).getQuantity()) {
                     findLocationByName(source).getInv().deletePQ(existingIndex);
                     addItemsToInventorySilent(target, barcode, quantityToMove);
                     ///////////
@@ -274,13 +275,13 @@ public class Initialize {
             for (int i = 0; i < locations.size(); i++) {
 
                 // Check if the inner list has elements before accessing them
-                if (!locations.get(i).getInv().getPq().isEmpty()) {
-                    for (int j = 0; j < locations.get(i).getInv().getPq().size(); j++) {
+                if (!locations.get(i).getInv().getInventory().isEmpty()) {
+                    for (int j = 0; j < locations.get(i).getInv().getInventory().size(); j++) {
                         String writeToFile = locations.get(i).getLocation() + ","
-                                + locations.get(i).getInv().getPq().get(j).getQuantity() + ","
-                                + locations.get(i).getInv().getPq().get(j).getProduct().getBarcode() + ","
-                                + locations.get(i).getInv().getPq().get(j).getProduct().getName() + ","
-                                + locations.get(i).getInv().getPq().get(j).getProduct().getPrice();
+                                + locations.get(i).getInv().getInventory().get(j).getQuantity() + ","
+                                + locations.get(i).getInv().getInventory().get(j).getProduct().getBarcode() + ","
+                                + locations.get(i).getInv().getInventory().get(j).getProduct().getName() + ","
+                                + locations.get(i).getInv().getInventory().get(j).getProduct().getPrice();
 
                         writer.println(writeToFile);
                         //System.out.println(writeToFile);
@@ -298,8 +299,9 @@ public class Initialize {
     }
 
     public void loadProductsAndInventories() {
-        String FILE_PATH = StringResources.FILE_PATH_2;
-        try (Scanner scanner = new Scanner(new FileReader(FILE_PATH))) {
+        try {
+            String FILE_PATH = StringResources.FILE_PATH_2;
+            Scanner scanner = new Scanner(new FileReader(FILE_PATH));
             scanner.nextLine();
             while (scanner.hasNextLine()) {
                 String[] parts = scanner.nextLine().split(",");
