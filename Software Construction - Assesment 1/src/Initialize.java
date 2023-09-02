@@ -389,6 +389,7 @@ public class Initialize {
     // Loads products and inventories from a file
     public void loadProductsAndInventories() {
         try {
+
             String FILE_PATH = StringResources.FILE_PATH_2;
             Scanner scanner = new Scanner(new FileReader(FILE_PATH));
             scanner.nextLine(); // Skip the header line
