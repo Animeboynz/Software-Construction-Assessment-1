@@ -1,6 +1,7 @@
 Inventory, Quantity, Barcode, Name, Price
 Store,726,123,Product 1,119.98
-Store,19,456,Product 2,199.98
+Store,39,456,Product 2,199.98
+Store,20,789,Product 3,299.98
 Backroom,6,456,Product 2,199.98
 Backroom,11,123,Product 1,119.98
 Offsite,NULL,NULL,NULL,NULL

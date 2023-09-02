@@ -27,7 +27,7 @@ import java.util.Scanner;
 public class Initialize {
     private List<Location> locations; // List to store locations
     private Scanner scanner; // Scanner for user input
-    Pro q = new Pro(); // Pro class instance for product management
+    Pro productManagement = new Pro(); // Pro class instance for product management
     Log log = new Log(); // Log class instance for logging operations
 
     // Constructor to initialize locations and scanner
@@ -62,7 +62,7 @@ public class Initialize {
         System.out.print(StringResources.TYPE_BARCODE);
         String barcode = scanner.next();
 
-        if (!q.doesProductExist(barcode)) {
+        if (!productManagement.doesProductExist(barcode)) {
             System.out.print(StringResources.PROMPT_PRODUCT_NAME);
             scanner.nextLine(); // Consume the newline left from previous input
             String name = scanner.nextLine(); // Read the entire line, including spaces
@@ -72,7 +72,7 @@ public class Initialize {
             try {
                 price = Double.parseDouble(scanner.next());
                 scanner.nextLine();
-                q.addNewProduct(new Product(barcode, name, price));
+                productManagement.addNewProduct(new Product(barcode, name, price));
                 log.logData("Created New Product \"" + name + "\"(" + barcode + ") with price $" + price);
                 System.out.println(StringResources.PRODUCT_ADD_SUCCESS);
             } catch (Exception e) {
@@ -108,7 +108,7 @@ public class Initialize {
 
     // Finds a product by its barcode
     private Product findProductByBarcode(String barcode) {
-        for (Product product : q.getProducts()) {
+        for (Product product : productManagement.getProducts()) {
             if (product.getBarcode().equals(barcode)) {
                 return product;
             }
@@ -351,7 +351,7 @@ public class Initialize {
 
     // Saves all data and exits the program
     public void saveAndExit() {
-        q.saveMasterProductsList();
+        productManagement.saveMasterProductsList();
         saveProductsAndInventories();
         log.saveLog();
     }

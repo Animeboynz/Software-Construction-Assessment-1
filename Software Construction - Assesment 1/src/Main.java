@@ -24,7 +24,7 @@ public class Main
         Initialize main_Menu = new Initialize();
 
         // Loading the master product list, products, and inventories
-        main_Menu.q.loadMasterProductsList();
+        main_Menu.productManagement.loadMasterProductsList();
         main_Menu.loadProductsAndInventories();
 
         // Loading the log
