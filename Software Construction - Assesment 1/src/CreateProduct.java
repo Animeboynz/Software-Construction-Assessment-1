@@ -2,8 +2,8 @@
 Group Number: 90
 Group Members: Maahir Hussain Shaik(ID: 21154501)
                Roshan Varughese(ID: 21137055)
-Class Name: Main
-Class Function:
+Class Name: CreateProduct
+Class Summary:
 The class declares two abstract methods:
  It includes methods for saving and loading product data from a file
 addNewProduct(Product newProduct): Subclasses must implement this method to add a new product to the list.

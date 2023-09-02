@@ -1,4 +1,25 @@
+/*
+Group Number: 90
+Group Members: Maahir Hussain Shaik(ID: 21154501)
+               Roshan Varughese(ID: 21137055)
+Class Name: StringResources
+Class Function:
+StringResources code is to centralize and store constant string resources that are used throughout a software application.
+These string resources serve various purposes, such as:
 
+File Paths
+
+Date & Time Format
+
+User Error Messages.
+
+Location Prompts
+
+Product Prompts
+
+Success/Failure Messages
+
+ */
 
 public class StringResources {
 

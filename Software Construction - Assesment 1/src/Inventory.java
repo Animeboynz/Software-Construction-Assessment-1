@@ -2,7 +2,7 @@
 Group Number: 90
 Group Members: Maahir Hussain Shaik(ID: 21154501)
                Roshan Varughese(ID: 21137055)
-Class Name: Main
+Class Name: Inventory
 Class Function:
 Methods to add products with quantities to the inventory, either with or without generating output.
 A method to update the quantity of a product in the inventory based on a given sign ('+' for addition, '-' for subtraction).
