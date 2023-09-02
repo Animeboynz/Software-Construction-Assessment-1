@@ -19,6 +19,7 @@ public class StringResources {
     public static final String LOCATION_NEW_NAME = "Enter a name for the new location: ";
     public static final String LOCATION_EXISTS = "A Location with the same name already exists.";
     public static final String LOCATION_NOT_EXIST = "The Entered Location does not exist";
+    public static final String LOCATION_EMPTY = "The Entered Location's Inventory is Empty";
     public static final String LOCATION_SELECT = "Select your desired location.";
     public static final String LOCATION_ONLY_ONE = "You only have 1 location, Create more to use this function";
     public static final String SOURCE_INV = "Select Source Inventory";

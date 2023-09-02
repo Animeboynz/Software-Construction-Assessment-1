@@ -138,7 +138,12 @@ public class Initialize {
         Location loc = this.findLocationByName(option);
         if (loc != null)
         {
-            System.out.println(loc.toString());
+            if (loc.getInv().getInventory().size() > 0) {
+                System.out.println(loc);
+            }
+            else {
+                System.out.println(StringResources.LOCATION_EMPTY);
+            }
         }
         else
         {
