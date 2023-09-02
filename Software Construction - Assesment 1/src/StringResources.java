@@ -13,6 +13,7 @@ public class StringResources {
     //USER ERROR
     public static final String INVALID_USER_OPTION_SELECT = "Invalid option. Please select again."; //With auto Retry
     public static final String INVALID_USER_OPTION_SELECT_NR = "Invalid config option.";
+    public static final String INVALID_USER_INPUT_FLOAT = "Please try again with an Integer Value";
 
     //LOCATION PROMPTS
     public static final String LOCATION_NEW_NAME = "Enter a name for the new location: ";
@@ -22,6 +23,8 @@ public class StringResources {
     public static final String LOCATION_ONLY_ONE = "You only have 1 location, Create more to use this function";
     public static final String SOURCE_INV = "Select Source Inventory";
     public static final String DESTINATION_INV = "Select Destination Inventory";
+    public static final String LOCATION_SAME = "You have chosen the same SOURCE and TARGET inventories. Try again";
+
 
     //PRODUCT PROMPTS
     public static final String PRODUCT_NOT_EXIST = "Product does not exist. Add new product under options first";
@@ -29,6 +32,7 @@ public class StringResources {
     public static final String PRODUCT_NOT_EXIST_UNDER_INV = "That product does not exist in this inventory";
     public static final String PRODUCT_ADD_SUCCESS = "Product added successfully.";
     public static final String PRODUCT_BARCODE_EXISTS = "Product with the same barcode already exists.";
+    public static final String PRODUCT_BARCODE_INVALID = "No product is associated with this barcode.";//PRODUCT_NOT_EXIST
     public static final String TYPE_BARCODE = "Enter product barcode: ";
     public static final String PROMPT_PRODUCT_NAME = "Enter product name: ";
     public static final String PROMPT_PRODUCT_PRICE = "Enter product price: ";

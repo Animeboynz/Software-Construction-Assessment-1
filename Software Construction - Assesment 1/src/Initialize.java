@@ -67,11 +67,18 @@ public class Initialize {
             scanner.nextLine(); // Consume the newline left from previous input
             String name = scanner.nextLine(); // Read the entire line, including spaces
             System.out.print(StringResources.PROMPT_PRODUCT_PRICE);
-            double price = Double.parseDouble(scanner.next());
 
-            q.addNewProduct(new Product(barcode, name, price));
-            log.logData("Created New Product \"" + name + "\"(" + barcode + ") with price $" + price);
-            System.out.println(StringResources.PRODUCT_ADD_SUCCESS);
+            double price = 0;
+            try {
+                price = Double.parseDouble(scanner.next());
+                scanner.nextLine();
+                q.addNewProduct(new Product(barcode, name, price));
+                log.logData("Created New Product \"" + name + "\"(" + barcode + ") with price $" + price);
+                System.out.println(StringResources.PRODUCT_ADD_SUCCESS);
+            } catch (Exception e) {
+                System.out.println(StringResources.INVALID_USER_INPUT_FLOAT);
+
+            }
         } else {
             System.out.println(StringResources.PRODUCT_BARCODE_EXISTS);
         }
@@ -82,9 +89,11 @@ public class Initialize {
         System.out.println(StringResources.LOCATION_NEW_NAME);
         String option2 = scanner.nextLine();
         int result = createNewSilentLocation(option2);
-        log.logData("Created New Location \"" + option2 + "\"");
         if (result == 1) {
             System.out.println(StringResources.LOCATION_EXISTS);
+        }
+        else {
+            log.logData("Created New Location \"" + option2 + "\"");
         }
     }
 
@@ -104,14 +113,14 @@ public class Initialize {
                 return product;
             }
         }
-        System.out.println(StringResources.PRODUCT_NOT_EXIST);
+        System.out.println(StringResources.PRODUCT_BARCODE_INVALID);
         return null;
     }
 
     // Finds a location by its name
     private Location findLocationByName(String name) {
         for (Location location : locations) {
-            if (location.getLocation().equals(name)) {
+            if (location.getLocation().equalsIgnoreCase(name)) {
                 return location;
             }
         }
@@ -127,7 +136,14 @@ public class Initialize {
 
         String option = scanner.nextLine();
         Location loc = this.findLocationByName(option);
-        System.out.println(loc.toString());
+        if (loc != null)
+        {
+            System.out.println(loc.toString());
+        }
+        else
+        {
+            System.out.println(StringResources.LOCATION_NOT_EXIST);
+        }
     }
 
     // Adds items to inventory for a selected location
@@ -137,6 +153,12 @@ public class Initialize {
             System.out.println(location.getLocation());
         }
         String loc = scanner.nextLine();
+        Location checkIfExists = findLocationByName(loc);
+        if (checkIfExists == null)
+        {
+            System.out.println(StringResources.LOCATION_NOT_EXIST);
+            return;
+        }
         System.out.println(StringResources.TYPE_BARCODE);
         String barcode = scanner.nextLine();
         Product p = findProductByBarcode(barcode);
@@ -146,16 +168,29 @@ public class Initialize {
 
             if (existingIndex != -1) {
                 System.out.println(StringResources.PROMPT_QUANTITY_TO_ADD);
-                int quantityToAdd = scanner.nextInt();
-                scanner.nextLine(); // Consume the newline
-                findLocationByName(loc).getInv().updateQuantity(existingIndex, quantityToAdd, '+');
-                log.logData("Added \"" + p.getName() + "\"(" + p.getBarcode() + ")x" + quantityToAdd + " to " + loc);
+
+                try {
+                    int quantityToAdd = Integer.parseInt(scanner.nextLine());
+                    scanner.nextLine(); // Consume the newline
+                    findLocationByName(loc).getInv().updateQuantity(existingIndex, quantityToAdd, '+');
+                    log.logData("Added \"" + p.getName() + "\"(" + p.getBarcode() + ")x" + quantityToAdd + " to " + loc);
+                }
+                catch (Exception e) {
+                    System.out.println(StringResources.INVALID_USER_INPUT_FLOAT);
+                    return;
+                }
             } else {
-                System.out.println(StringResources.PROMPT_QUANTITY_TO_ADD);
-                int quantity = scanner.nextInt();
-                scanner.nextLine(); // Consume the newline
-                findLocationByName(loc).getInv().addProduct(p, quantity);
-                log.logData("Added \"" + p.getName() + "\"(" + p.getBarcode() + ")x" + quantity + " to " + loc);
+                try {
+                    System.out.println(StringResources.PROMPT_QUANTITY_TO_ADD);
+                    int quantity = scanner.nextInt();
+                    scanner.nextLine(); // Consume the newline
+                    findLocationByName(loc).getInv().addProduct(p, quantity);
+                    log.logData("Added \"" + p.getName() + "\"(" + p.getBarcode() + ")x" + quantity + " to " + loc);
+                }
+                catch (Exception e) {
+                    System.out.println(StringResources.INVALID_USER_INPUT_FLOAT);
+                    return;
+                }
             }
         }
     }
@@ -183,26 +218,47 @@ public class Initialize {
         }
         String loc = scanner.nextLine();
 
+        Location checkIfExists = findLocationByName(loc);
+        if (checkIfExists == null)
+        {
+            System.out.println(StringResources.LOCATION_NOT_EXIST);
+            return;
+        }
+
         System.out.println(StringResources.TYPE_BARCODE);
         String barcode = scanner.nextLine();
         Product p = findProductByBarcode(barcode);
 
-        int existingIndex = findExistingProductIndex(loc, p);
+        if (p != null)
+        {
+            int existingIndex = findExistingProductIndex(loc, p);
 
-        if (existingIndex != -1) {
-            System.out.println(StringResources.PROMPT_QUANTITY_TO_REMOVE);
-            int quantityToRemove = scanner.nextInt();
-            scanner.nextLine(); // Consume the newline
-            int removeStatus = findLocationByName(loc).getInv().updateQuantity(existingIndex, quantityToRemove, '-');
-            log.logData("Removed \"" + p.getName() + "\"(" + p.getBarcode() + ")x" + quantityToRemove + " from " + loc);
-            if (removeStatus == 0) {
-                System.out.println(StringResources.PRODUCT_REMOVE_SUCCESS);
+            if (existingIndex != -1) {
+                System.out.println(StringResources.PROMPT_QUANTITY_TO_REMOVE);
+
+                int removeStatus;
+                int quantityToRemove;
+                try {
+                    quantityToRemove = scanner.nextInt();
+                    scanner.nextLine(); // Consume the newline
+                    removeStatus = findLocationByName(loc).getInv().updateQuantity(existingIndex, quantityToRemove, '-');
+                } catch (Exception e) {
+                    System.out.println(StringResources.INVALID_USER_INPUT_FLOAT);
+                    return;
+                }
+
+                if (removeStatus == 0) {
+                    System.out.println(StringResources.PRODUCT_REMOVE_SUCCESS);
+                    log.logData("Removed \"" + p.getName() + "\"(" + p.getBarcode() + ")x" + quantityToRemove + " from " + loc);
+                }
+                if (removeStatus == 1) {
+                    System.out.println(StringResources.PRODUCT_REMOVE_FAIL);
+                }
             }
-            if (removeStatus == 1) {
-                System.out.println(StringResources.PRODUCT_REMOVE_FAIL);
-            }
-        } else {
-            System.out.println(StringResources.PRODUCT_NOT_EXIST_UNDER_INV);
+                else 
+                {
+                    System.out.println(StringResources.PRODUCT_NOT_EXIST_UNDER_INV);
+                }
         }
     }
 
@@ -237,26 +293,49 @@ public class Initialize {
                 }
             }
             String target = scanner.nextLine();
+            if (findLocationByName(source) == findLocationByName(target))
+            {
+                System.out.println(StringResources.LOCATION_SAME);
+                return;
+            }
             System.out.println(StringResources.TYPE_BARCODE);
             String barcode = scanner.nextLine();
 
             Product p = findProductByBarcode(barcode);
+            if (p == null)
+            {
+                return;
+            }
             int existingIndex = findExistingProductIndex(source, p);
 
             if (existingIndex != -1) {
                 System.out.println(StringResources.PROMPT_QUANTITY_TO_MOVE);
-                int quantityToMove = scanner.nextInt();
-                scanner.nextLine(); // Consume the newline
-                if (quantityToMove < findLocationByName(source).getInv().getInventory().get(existingIndex).getQuantity()) {
+                int quantityToMove;
+
+                try {
+                    quantityToMove = scanner.nextInt();
+                    scanner.nextLine(); // Consume the newline
+                }
+                catch (Exception e) {
+                    System.out.println(StringResources.INVALID_USER_INPUT_FLOAT);
+                    return;
+                }
+
+                if (quantityToMove < findLocationByName(source).getInv().getInventory().get(existingIndex).getQuantity())
+                {
                     // Move Product
                     findLocationByName(source).getInv().updateQuantity(existingIndex, quantityToMove, '-');
                     addItemsToInventorySilent(target, barcode, quantityToMove);
                     log.logData("Moved \"" + p.getName() + "\"(" + p.getBarcode() + ")x" + quantityToMove + " from " + source + " to " + target);
-                } else if (quantityToMove == findLocationByName(source).getInv().getInventory().get(existingIndex).getQuantity()) {
+                }
+                else if (quantityToMove == findLocationByName(source).getInv().getInventory().get(existingIndex).getQuantity())
+                {
                     findLocationByName(source).getInv().deletePQ(existingIndex);
                     addItemsToInventorySilent(target, barcode, quantityToMove);
                     log.logData("Moved \"" + p.getName() + "\"(" + p.getBarcode() + ")x" + quantityToMove + " from " + source + " to " + target);
-                } else {
+                }
+                else
+                {
                     System.out.println(StringResources.PRODUCT_MOVE_FAIL);
                 }
             } else {
