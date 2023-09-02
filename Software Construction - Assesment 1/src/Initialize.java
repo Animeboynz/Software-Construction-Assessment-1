@@ -1,3 +1,21 @@
+/*
+Group Number: 90
+Group Members: Maahir Hussain Shaik(ID: 21154501)
+               Roshan Varughese(ID: 21137055)
+Class Name: Initialize
+Class Function:
+The addNewProduct method allows users to add new products to the system. It collects information like barcode, name, and price, and checks for duplicates.
+The createNewLocation method enables users to create new stock locations.
+The program supports listing inventory for a selected location (listInventory) and adding items to inventory (addItemsToInventory).
+Items can be added silently using the addItemsToInventorySilent method.
+Users can move stock items from one location to another (moveStockLocation).
+Stock movement is logged.
+The program allows users to save all data, including products, inventory, and logs, and exit the program (saveAndExit).
+Data is saved to files and loaded from files for persistence between program runs (saveProductsAndInventories and loadProductsAndInventories).
+
+
+*/
+
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -7,16 +25,18 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Initialize {
-    private List<Location> locations;
-    private Scanner scanner;
-    Pro q = new Pro();
-    Log log = new Log();
+    private List<Location> locations; // List to store locations
+    private Scanner scanner; // Scanner for user input
+    Pro q = new Pro(); // Pro class instance for product management
+    Log log = new Log(); // Log class instance for logging operations
 
+    // Constructor to initialize locations and scanner
     public Initialize() {
         locations = new ArrayList<>();
         scanner = new Scanner(System.in);
     }
 
+    // Displays options for stock management
     public void options() {
         System.out.println("Select a config option:");
         System.out.println("1. Add new Products");
@@ -37,13 +57,12 @@ public class Initialize {
         }
     }
 
-    public void addNewProduct()
-    {
+    // Allows adding a new product
+    public void addNewProduct() {
         System.out.print(StringResources.TYPE_BARCODE);
         String barcode = scanner.next();
 
-        if (!q.doesProductExist(barcode))
-        {
+        if (!q.doesProductExist(barcode)) {
             System.out.print(StringResources.PROMPT_PRODUCT_NAME);
             scanner.nextLine(); // Consume the newline left from previous input
             String name = scanner.nextLine(); // Read the entire line, including spaces
@@ -53,35 +72,32 @@ public class Initialize {
             q.addNewProduct(new Product(barcode, name, price));
             log.logData("Created New Product \"" + name + "\"(" + barcode + ") with price $" + price);
             System.out.println(StringResources.PRODUCT_ADD_SUCCESS);
-        }
-        else {
+        } else {
             System.out.println(StringResources.PRODUCT_BARCODE_EXISTS);
         }
     }
 
-    public void createNewLocation()
-    {
+    // Allows creating a new location
+    public void createNewLocation() {
         System.out.println(StringResources.LOCATION_NEW_NAME);
         String option2 = scanner.nextLine();
         int result = createNewSilentLocation(option2);
         log.logData("Created New Location \"" + option2 + "\"");
-        if (result == 1)
-        {
+        if (result == 1) {
             System.out.println(StringResources.LOCATION_EXISTS);
         }
     }
 
-    public int createNewSilentLocation(String newLocationName)
-    {
-        if (findLocationByName(newLocationName) == null)
-        {
+    // Creates a new location (silent version, without logging)
+    public int createNewSilentLocation(String newLocationName) {
+        if (findLocationByName(newLocationName) == null) {
             locations.add(new Location(newLocationName));
             return 0;
         }
         return 1;
     }
 
-
+    // Finds a product by its barcode
     private Product findProductByBarcode(String barcode) {
         for (Product product : q.getProducts()) {
             if (product.getBarcode().equals(barcode)) {
@@ -92,6 +108,7 @@ public class Initialize {
         return null;
     }
 
+    // Finds a location by its name
     private Location findLocationByName(String name) {
         for (Location location : locations) {
             if (location.getLocation().equals(name)) {
@@ -101,6 +118,7 @@ public class Initialize {
         return null;
     }
 
+    // Lists inventory for a selected location
     public void listInventory() {
         System.out.println(StringResources.LOCATION_SELECT);
         for (Location location : locations) {
@@ -110,9 +128,9 @@ public class Initialize {
         String option = scanner.nextLine();
         Location loc = this.findLocationByName(option);
         System.out.println(loc.toString());
-
     }
 
+    // Adds items to inventory for a selected location
     public void addItemsToInventory() {
         System.out.println(StringResources.LOCATION_SELECT);
         for (Location location : locations) {
@@ -129,22 +147,21 @@ public class Initialize {
             if (existingIndex != -1) {
                 System.out.println(StringResources.PROMPT_QUANTITY_TO_ADD);
                 int quantityToAdd = scanner.nextInt();
-                scanner.nextLine();//Prompt Skip Test
+                scanner.nextLine(); // Consume the newline
                 findLocationByName(loc).getInv().updateQuantity(existingIndex, quantityToAdd, '+');
                 log.logData("Added \"" + p.getName() + "\"(" + p.getBarcode() + ")x" + quantityToAdd + " to " + loc);
-
             } else {
                 System.out.println(StringResources.PROMPT_QUANTITY_TO_ADD);
                 int quantity = scanner.nextInt();
-                scanner.nextLine();//Prompt Skip Test
+                scanner.nextLine(); // Consume the newline
                 findLocationByName(loc).getInv().addProduct(p, quantity);
                 log.logData("Added \"" + p.getName() + "\"(" + p.getBarcode() + ")x" + quantity + " to " + loc);
             }
         }
     }
 
+    // Adds items to inventory silently (without user interaction)
     public void addItemsToInventorySilent(String loc, String barcode, int quantityToAdd) {
-
         Product p = findProductByBarcode(barcode);
 
         if (p != null) {
@@ -158,6 +175,7 @@ public class Initialize {
         }
     }
 
+    // Removes items from inventory for a selected location
     public void removeItemsFromInventory() {
         System.out.println(StringResources.LOCATION_SELECT);
         for (Location location : locations) {
@@ -174,15 +192,13 @@ public class Initialize {
         if (existingIndex != -1) {
             System.out.println(StringResources.PROMPT_QUANTITY_TO_REMOVE);
             int quantityToRemove = scanner.nextInt();
-            scanner.nextLine();//Prompt Skip Test
+            scanner.nextLine(); // Consume the newline
             int removeStatus = findLocationByName(loc).getInv().updateQuantity(existingIndex, quantityToRemove, '-');
             log.logData("Removed \"" + p.getName() + "\"(" + p.getBarcode() + ")x" + quantityToRemove + " from " + loc);
-            if (removeStatus == 0)
-            {
+            if (removeStatus == 0) {
                 System.out.println(StringResources.PRODUCT_REMOVE_SUCCESS);
             }
-            if (removeStatus == 1)
-            {
+            if (removeStatus == 1) {
                 System.out.println(StringResources.PRODUCT_REMOVE_FAIL);
             }
         } else {
@@ -190,6 +206,7 @@ public class Initialize {
         }
     }
 
+    // Finds the index of an existing product in a location's inventory
     private int findExistingProductIndex(String location, Product product) {
         Location loc = findLocationByName(location);
         if (loc != null) {
@@ -203,13 +220,11 @@ public class Initialize {
         return -1;
     }
 
-    public void moveStockLocation()
-    {
-        if (locations.size() == 1)
-        {
+    // Moves stock from one location to another
+    public void moveStockLocation() {
+        if (locations.size() == 1) {
             System.out.println(StringResources.LOCATION_ONLY_ONE);
-        }
-        else {
+        } else {
             System.out.println(StringResources.SOURCE_INV);
             for (Location location : locations) {
                 System.out.println(location.getLocation());
@@ -217,8 +232,7 @@ public class Initialize {
             String source = scanner.nextLine();
             System.out.println(StringResources.DESTINATION_INV);
             for (Location location : locations) {
-                if (!location.getLocation().equals(source))
-                {
+                if (!location.getLocation().equals(source)) {
                     System.out.println(location.getLocation());
                 }
             }
@@ -229,50 +243,43 @@ public class Initialize {
             Product p = findProductByBarcode(barcode);
             int existingIndex = findExistingProductIndex(source, p);
 
-            if (existingIndex != -1)//If product exists in inventory
-            {
+            if (existingIndex != -1) {
                 System.out.println(StringResources.PROMPT_QUANTITY_TO_MOVE);
                 int quantityToMove = scanner.nextInt();
-                scanner.nextLine();//Prompt Skip Test
-                if (quantityToMove < findLocationByName(source).getInv().getInventory().get(existingIndex).getQuantity())//If quantityToMove <= quantity of that product in source
-                {
-                    //Move Product
+                scanner.nextLine(); // Consume the newline
+                if (quantityToMove < findLocationByName(source).getInv().getInventory().get(existingIndex).getQuantity()) {
+                    // Move Product
                     findLocationByName(source).getInv().updateQuantity(existingIndex, quantityToMove, '-');
                     addItemsToInventorySilent(target, barcode, quantityToMove);
-                    ///////////
                     log.logData("Moved \"" + p.getName() + "\"(" + p.getBarcode() + ")x" + quantityToMove + " from " + source + " to " + target);
                 } else if (quantityToMove == findLocationByName(source).getInv().getInventory().get(existingIndex).getQuantity()) {
                     findLocationByName(source).getInv().deletePQ(existingIndex);
                     addItemsToInventorySilent(target, barcode, quantityToMove);
-                    ///////////
                     log.logData("Moved \"" + p.getName() + "\"(" + p.getBarcode() + ")x" + quantityToMove + " from " + source + " to " + target);
                 } else {
                     System.out.println(StringResources.PRODUCT_MOVE_FAIL);
                 }
-            }
-            else {
+            } else {
                 System.out.println(StringResources.PRODUCT_NOT_EXIST_UNDER_LOCATION);
             }
         }
     }
 
-    public void saveAndExit()
-    {
+    // Saves all data and exits the program
+    public void saveAndExit() {
         q.saveMasterProductsList();
         saveProductsAndInventories();
         log.saveLog();
-
     }
 
-    public void saveProductsAndInventories()
-    {
+    // Saves products and inventories to a file
+    public void saveProductsAndInventories() {
         String FILE_PATH = StringResources.FILE_PATH_2;
         try {
             PrintWriter writer = new PrintWriter(new FileWriter(FILE_PATH));
             writer.println("Inventory, Quantity, Barcode, Name, Price");
 
             for (int i = 0; i < locations.size(); i++) {
-
                 // Check if the inner list has elements before accessing them
                 if (!locations.get(i).getInv().getInventory().isEmpty()) {
                     for (int j = 0; j < locations.get(i).getInv().getInventory().size(); j++) {
@@ -283,12 +290,10 @@ public class Initialize {
                                 + locations.get(i).getInv().getInventory().get(j).getProduct().getPrice();
 
                         writer.println(writeToFile);
-                        //System.out.println(writeToFile);
                     }
-                }else {
+                } else {
                     String writeToFile = locations.get(i).getLocation() + ",NULL,NULL,NULL,NULL";
                     writer.println(writeToFile);
-                    //System.out.println(writeToFile);
                 }
             }
             writer.close();
@@ -297,11 +302,12 @@ public class Initialize {
         }
     }
 
+    // Loads products and inventories from a file
     public void loadProductsAndInventories() {
         try {
             String FILE_PATH = StringResources.FILE_PATH_2;
             Scanner scanner = new Scanner(new FileReader(FILE_PATH));
-            scanner.nextLine();
+            scanner.nextLine(); // Skip the header line
             while (scanner.hasNextLine()) {
                 String[] parts = scanner.nextLine().split(",");
                 if (parts.length == 5) {
@@ -309,8 +315,7 @@ public class Initialize {
                     String barcode = parts[2];
                     String name = parts[3];
                     createNewSilentLocation(location);
-                    if (!barcode.equals("NULL"))
-                    {
+                    if (!barcode.equals("NULL")) {
                         findLocationByName(location).getInv().addSilentProduct(new Product(barcode, name, Double.parseDouble(parts[4])), Integer.parseInt(parts[1]));
                     }
                 }

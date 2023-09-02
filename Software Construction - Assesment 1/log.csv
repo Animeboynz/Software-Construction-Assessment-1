@@ -13,3 +13,9 @@ DATE/TIME, Action
 31/08/2023 23:06:55,Added "Product 2"(456)x3 to Store
 31/08/2023 23:07:19,Removed "Product 2"(456)x2 from Store
 31/08/2023 23:07:51,Removed "Product 2"(456)x7 from Backroom
+02/09/2023 17:45:21,Added "Product 1"(123)x700 to Store
+02/09/2023 18:07:35,Added "Product 1"(123)x20 to Offsite
+02/09/2023 18:08:30,Created New Product "p5"(567) with price $78.9
+02/09/2023 18:08:53,Added "p5"(567)x20 to Offsite
+02/09/2023 18:17:04,Created New Location "Location_new"
+02/09/2023 18:42:54,Moved "Product 1"(123)x20 from Store to Location_new

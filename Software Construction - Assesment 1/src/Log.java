@@ -1,3 +1,12 @@
+/*
+Group Number: 90
+Group Members: Maahir Hussain Shaik(ID: 21154501)
+               Roshan Varughese(ID: 21137055)
+Class Name: Main
+Class Function: 1. Prints Available Options for the User to Choose from
+                2. Allows User to Choose Options for Stock Management
+ */
+
 import java.io.BufferedReader;
 import java.io.PrintWriter;
 import java.io.FileReader;
@@ -11,12 +20,7 @@ import java.util.Map;
 
 public class Log
 {
-    //String Date / Time, String Action
-    //24/09/2003 13:48:32 Added P1(12333)x3 to L1
-    //24/09/2003 13:48:32 Removed P1(12333)x1 from L1
-    //24/09/2003 13:48:32 Moved P1(12333)x5 from L1 to L2
-    //24/09/2003 13:48:32 Created New Location L5
-    //24/09/2003 13:48:32 Created New Product P2(12334) with price $299.98
+
     Map<String, String> log;
 
     public Log()

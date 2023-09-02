@@ -1,5 +1,7 @@
 Inventory, Quantity, Barcode, Name, Price
-Store,24,123,Product 1,119.98
+Store,704,123,Product 1,119.98
 Store,19,456,Product 2,199.98
 Backroom,6,456,Product 2,199.98
-Offsite,NULL,NULL,NULL,NULL
+Offsite,20,123,Product 1,119.98
+Offsite,20,567,p5,78.9
+Location_new,20,123,Product 1,119.98
