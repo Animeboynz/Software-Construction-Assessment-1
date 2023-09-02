@@ -20,3 +20,7 @@ DATE/TIME, Action
 02/09/2023 18:17:04,Created New Location "Location_new"
 02/09/2023 18:42:54,Moved "Product 1"(123)x20 from Store to Location_new
 02/09/2023 21:40:46,Moved "Product 1"(123)x700 from Store to Store
+03/09/2023 00:08:17,Added "Product 1"(123)x222 to Store
+03/09/2023 00:08:42,Added "Product 1"(123)x1 to Store
+03/09/2023 00:09:02,Removed "Product 1"(123)x190 from Store
+03/09/2023 00:09:41,Moved "Product 1"(123)x11 from Store to Backroom
