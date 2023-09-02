@@ -70,7 +70,7 @@ public class Inventory {
     }
 
     // Getter method to retrieve the list of ProductQuantity objects
-    public List<ProductQuantity> getPq() {
+    public List<ProductQuantity> getInventory() {
         return pq;
     }
 
