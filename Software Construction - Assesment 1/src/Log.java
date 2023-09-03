@@ -46,6 +46,7 @@ public class Log
         }
     }
 
+    //Start of Partially ChatGPT Generated Code
     public void saveLog() {
         try (PrintWriter writer = new PrintWriter(new FileWriter(StringResources.FILE_PATH_3))) {
             writer.println("DATE/TIME, Action");
@@ -56,6 +57,7 @@ public class Log
             System.out.println("Error saving log: " + e.getMessage());
         }
     }
+    //End of Partially ChatGPT Generated Code
 
     public void loadLog() {
         try (BufferedReader reader = new BufferedReader(new FileReader(StringResources.FILE_PATH_3))) {

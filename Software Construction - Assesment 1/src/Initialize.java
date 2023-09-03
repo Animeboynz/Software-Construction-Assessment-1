@@ -106,6 +106,7 @@ public class Initialize {
         return 1;
     }
 
+    //Start of Partially ChatGPT Generated Code
     // Finds a product by its barcode
     private Product findProductByBarcode(String barcode) {
         for (Product product : productManagement.getProducts()) {
@@ -126,6 +127,7 @@ public class Initialize {
         }
         return null;
     }
+    //End of Partially ChatGPT Generated Code
 
     // Lists inventory for a selected location
     public void listInventory() {
@@ -267,6 +269,7 @@ public class Initialize {
         }
     }
 
+    //Start of Partially ChatGPT Generated Code
     // Finds the index of an existing product in a location's inventory
     private int findExistingProductIndex(String location, Product product) {
         Location loc = findLocationByName(location);
@@ -280,6 +283,7 @@ public class Initialize {
         }
         return -1;
     }
+    //End of Partially ChatGPT Generated Code
 
     // Moves stock from one location to another
     public void moveStockLocation() {
