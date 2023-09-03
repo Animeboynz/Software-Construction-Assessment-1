@@ -35,6 +35,7 @@ public class StringResources {
     public static final String INVALID_USER_OPTION_SELECT = "Invalid option. Please select again."; //With auto Retry
     public static final String INVALID_USER_OPTION_SELECT_NR = "Invalid config option.";
     public static final String INVALID_USER_INPUT_FLOAT = "Please try again with an Integer Value";
+    public static final String FILE_CREATE_ERROR = "CSV Files could not be generated automatically. Please ensure this program has write privileges to the root folder.";
 
     //LOCATION PROMPTS
     public static final String LOCATION_NEW_NAME = "Enter a name for the new location: ";
@@ -42,7 +43,7 @@ public class StringResources {
     public static final String LOCATION_NOT_EXIST = "The Entered Location does not exist";
     public static final String LOCATION_EMPTY = "The Entered Location's Inventory is Empty";
     public static final String LOCATION_SELECT = "Select your desired location.";
-    public static final String LOCATION_ONLY_ONE = "You only have 1 location, Create more to use this function";
+    public static final String LOCATION_ONLY_ONE = "You do not have enough locations, Create more to use this function";
     public static final String SOURCE_INV = "Select Source Inventory";
     public static final String DESTINATION_INV = "Select Destination Inventory";
     public static final String LOCATION_SAME = "You have chosen the same SOURCE and TARGET inventories. Try again";

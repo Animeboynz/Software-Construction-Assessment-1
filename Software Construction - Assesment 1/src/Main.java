@@ -23,6 +23,7 @@ public class Main
         // Creating an instance of the Initialize class to initialize components and data
         Initialize main_Menu = new Initialize();
 
+        main_Menu.regenerateMissingFiles();
         // Loading the master product list, products, and inventories
         main_Menu.productManagement.loadMasterProductsList();
         main_Menu.loadProductsAndInventories();
