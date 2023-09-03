@@ -176,7 +176,7 @@ public class Initialize {
 
                 try {
                     int quantityToAdd = Integer.parseInt(scanner.nextLine());
-                    scanner.nextLine(); // Consume the newline
+                    //scanner.nextLine(); // Consume the newline
                     findLocationByName(loc).getInv().updateQuantity(existingIndex, quantityToAdd, '+');
                     log.logData("Added \"" + p.getName() + "\"(" + p.getBarcode() + ")x" + quantityToAdd + " to " + loc);
                 }
@@ -188,7 +188,7 @@ public class Initialize {
                 try {
                     System.out.println(StringResources.PROMPT_QUANTITY_TO_ADD);
                     int quantity = scanner.nextInt();
-                    scanner.nextLine(); // Consume the newline
+                    //scanner.nextLine(); // Consume the newline
                     findLocationByName(loc).getInv().addProduct(p, quantity);
                     log.logData("Added \"" + p.getName() + "\"(" + p.getBarcode() + ")x" + quantity + " to " + loc);
                 }
