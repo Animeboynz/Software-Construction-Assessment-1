@@ -65,6 +65,7 @@ public class Main
                     break;
                 case "5":
                     // Implement stock update checking (Placeholder)
+                    System.out.println("Unable to implement at this stage as this feature is client specific.");
                     break;
                 case "6":
                     main_Menu.log.printLog(); // Call a method to view the log
